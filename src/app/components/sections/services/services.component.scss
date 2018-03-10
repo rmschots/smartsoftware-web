@@ -1,0 +1,14 @@
+:host {
+  display: block;
+}
+
+.book-preview {
+  display: inline-block;
+  max-width: 400px;
+  width: 80%;
+  position: relative;
+
+  img {
+    width: 100%;
+  }
+}

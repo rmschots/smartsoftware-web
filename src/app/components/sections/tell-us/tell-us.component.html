@@ -1,0 +1,25 @@
+<div class="container">
+  <form fxLayout="column" [formGroup]="tellUsFormGroup" id="submit-frm" class="sample-form">
+    <div>
+      <mat-form-field>
+          <textarea matInput name="body" rows="10" placeholder="Tell us about your job..."
+                    formControlName="content" required></textarea>
+      </mat-form-field>
+    </div>
+    <div fxLayout="row" fxLayoutGap="30px">
+      <div fxFlex="40">
+        <mat-form-field>
+          <input matInput type="text" placeholder="Name" name="firstname" formControlName="name" required>
+        </mat-form-field>
+      </div>
+      <div fxFlex="40">
+        <mat-form-field>
+          <input matInput type="tel" placeholder="Phone" name="phone" formControlName="phone" required>
+        </mat-form-field>
+      </div>
+      <div fxFlex="20">
+        <button mat-raised-button color="primary" type="submit">Apply now</button>
+      </div>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,37 @@
+:host {
+  display: flex;
+  height: 64px;
+  padding-bottom: 20px;
+  padding-top: 20px;
+  top: 0;
+  width: 100%;
+  z-index: 2;
+  background: white;
+
+  ul {
+    list-style: none;
+    margin-bottom: 0;
+    padding-left: 0;
+
+    li {
+      margin-left: 40px;
+      float: left;
+
+      button {
+        font-size: 18px;
+      }
+    }
+  }
+}
+
+:host(.sticky) {
+  position: fixed;
+}
+
+.active-section {
+  color: #1c92d2;
+}
+
+.nav-links {
+  float: right;
+}

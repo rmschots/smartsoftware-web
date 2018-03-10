@@ -1,0 +1,16 @@
+<div class="container">
+  <a class="navbar-brand" href="#" pageScroll pageScrollTarget="#top" [pageScrollDuration]="0" (click)="scrollTop()">
+    <img src="assets/img/logo.png" alt="">
+  </a>
+  <div class="nav-links">
+    <ul>
+      <li *ngFor="let sectionName of sectionNames$ | async">
+        <button *ngIf="activeSectionName$ | async; let activeSectionName" mat-button
+                [ngClass]="{ 'active-section': sectionName === activeSectionName}"
+                pageScroll [pageScrollTarget]="'#'+ sectionName">
+          {{ sectionName }}
+        </button>
+      </li>
+    </ul>
+  </div>
+</div>

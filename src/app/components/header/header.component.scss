@@ -1,0 +1,51 @@
+#canvas-container {
+  background: linear-gradient(to right, #f2fcfe, #1c92d2);
+  height: 100%;
+  overflow: hidden;
+  position: absolute;
+  width: 100%;
+  z-index: -1;
+}
+
+canvas {
+  height: 100%;
+  width: 100%;
+}
+
+.header-container {
+  align-items: center;
+  height: 100%;
+
+  #header-logo {
+    display: block;
+    margin: auto;
+  }
+
+  .heading {
+    font-family: 'Proxima Bold';
+    color: white;
+    font-size: 40px;
+    margin: 10px 0;
+  }
+
+  .subheading {
+    color: white;
+    opacity: .5;
+    font-size: 24px;
+    margin: 10px 0px 30px;
+  }
+
+  p {
+    margin: 20px 0;
+    font-size: 20px;
+    color: white;
+    line-height: 34px;
+  }
+
+  button {
+    font-size: 18px;
+    height: 60px;
+    color: white;
+    font-family: 'Proxima Bold';
+  }
+}

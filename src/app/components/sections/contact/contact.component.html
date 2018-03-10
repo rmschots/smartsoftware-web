@@ -1,0 +1,46 @@
+<div class="container">
+  <div fxLayout="row">
+    <div fxFlex="50" class="text-left text-center-mobile wow animated fadeInUp contact-details">
+      <h3 class="heading no-margin wow animated fadeInUp">Contact Smart Software</h3>
+      <h4 class="subheading muted no-margin wow animated fadeInUp">Thank you for your interest in Smart Software's
+        services. Please provide the following information about your business needs to help us serve you beter.</h4>
+      <div class="details">
+        <h6 class="heading no-margin">Headquarters</h6>
+        <p class="small muted wow animated fadeInUp no-margin">Marktweg 18<br>
+          9300 Aalst, Belgium</p>
+      </div>
+      <div class="details">
+        <h4 class="subheading accent no-margin wow animated fadeInUp">+32 53 28 01 99 <br>
+          sales@smartsoftware.be</h4>
+      </div>
+    </div>
+    <form fxFlex="50" fxLayout="column" fxLayoutGap="20px" [formGroup]="contactFormGroup" class="mail-form">
+      <div fxLayout="row">
+        <div fxFlex="50" class="field-padding">
+          <mat-form-field>
+            <input matInput type="text" placeholder="Name" name="name" formControlName="name" required>
+          </mat-form-field>
+        </div>
+        <div fxFlex="50" class="field-padding">
+          <mat-form-field>
+            <input matInput type="email" placeholder="Email" name="email" formControlName="email" required>
+          </mat-form-field>
+        </div>
+      </div>
+      <div fxLayout="column" class="field-padding">
+        <mat-form-field>
+          <input matInput type="text" placeholder="Subject" name="subject" formControlName="subject" required>
+        </mat-form-field>
+      </div>
+      <div class="row field-padding">
+        <mat-form-field>
+          <textarea matInput name="content" rows="10" placeholder="Message. . ."
+                    formControlName="content" required></textarea>
+        </mat-form-field>
+      </div>
+      <div class="row field-padding">
+        <button mat-raised-button color="primary" type="submit">Send</button>
+      </div>
+    </form>
+  </div>
+</div>

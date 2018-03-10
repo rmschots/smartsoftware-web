@@ -1,0 +1,136 @@
+@import './theme';
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+@font-face {
+  font-family: 'Proxima';
+  src: url('assets/fonts/ProximaNova-Regular.otf');
+}
+
+@font-face {
+  font-family: 'Proxima Bold';
+  src: url('assets/fonts/ProximaNova-Bold.otf');
+}
+
+body {
+  font-family: 'Proxima';
+  font-size: 14px;
+  margin: 0;
+  display: block;
+}
+
+.container {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media (min-width: 768px) {
+  .container {
+    width: 750px;
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+    width: 970px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
+  }
+}
+
+.heading {
+  color: #484d53;
+  font-family: 'Proxima Bold';
+  line-height: 38px;
+}
+
+.subheading {
+  color: #6a727b;
+  font-family: 'Proxima';
+  line-height: 38px;
+  margin: 30px 0 50px;
+}
+
+.white {
+  color: white;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+section .container {
+  padding: 140px 0;
+}
+
+.muted {
+  color: #bbbbbb !important;
+}
+
+.light {
+  font-family: 'Proxima';
+}
+
+.no-margin {
+  margin: 0 !important;
+}
+
+.gray {
+  color: #6a727b;
+}
+
+.accent {
+  color: #7cc576 !important;
+}
+
+button {
+  font-family: 'Proxima Bold' !important;
+  font-size: 18px !important;
+}
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+  font-weight: 500;
+  color: inherit;
+}
+
+h4, .h4, h5, .h5, h6, .h6 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+h2 {
+  font-size: 36px;
+}
+
+h3 {
+  font-size: 30px;
+}
+
+h4 {
+  font-size: 24px;
+}
+
+h6 {
+  font-size: 18px;
+}
+
+p {
+  margin: 20px 0;
+  font-size: 30px;
+  line-height: 42px;
+
+  &.small {
+    font-size: 18px;
+    line-height: 36px;
+    color: #6a727b;
+  }
+}

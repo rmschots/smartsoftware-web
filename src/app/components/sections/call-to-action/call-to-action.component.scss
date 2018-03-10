@@ -1,0 +1,20 @@
+:host {
+  background: #7cc576;
+  display: block;
+
+  .container {
+    padding: 100px 0;
+  }
+}
+
+button {
+  font-size: 18px;
+  height: 60px;
+  color: white;
+  font-family: 'Proxima Bold';
+}
+
+.top-fit {
+  margin-top: 15px;
+  margin-bottom: 0;
+}

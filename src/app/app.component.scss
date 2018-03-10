@@ -1,0 +1,26 @@
+:host {
+  height: 100%;
+  position: absolute;
+  width: 100%;
+}
+
+h2 {
+  margin-top: 13px;
+}
+
+header {
+  height: 100%;
+  width: 100%;
+}
+
+.navbar-sticky {
+  position: fixed;
+}
+
+hr {
+  background: red;
+  border: 0;
+  border-top: 1px solid #434857;
+  color: red;
+  margin-bottom: 21px;
+}
