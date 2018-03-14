@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { SectionService } from './services/section.service';
 import { MatButtonModule, MatFormFieldModule, MatIconModule, MatInputModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgwWowModule } from 'ngx-wow';
 
 const COMPONENTS = [];
 
@@ -28,6 +29,7 @@ const MODULES = [
   RouterModule,
   FormsModule,
   ReactiveFormsModule,
+  NgwWowModule,
   ...MATERIAL_MODULES
 ];
 

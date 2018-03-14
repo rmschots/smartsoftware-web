@@ -1,6 +1,7 @@
-import { ChangeDetectionStrategy, Component, ElementRef, HostListener, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, HostListener, OnInit } from '@angular/core';
 import { PageScrollConfig } from 'ngx-page-scroll';
 import { SectionService } from './shared/services/section.service';
+import { NgwWowService } from 'ngx-wow';
 
 @Component({
   selector: 'app-root',
@@ -8,9 +9,8 @@ import { SectionService } from './shared/services/section.service';
   styleUrls: ['./app.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AppComponent {
-
-  constructor(private el: ElementRef, private _sectionService: SectionService) {
+export class AppComponent implements OnInit {
+  constructor(private el: ElementRef, private _sectionService: SectionService, private _wowService: NgwWowService) {
     PageScrollConfig.defaultScrollOffset = 104;
     PageScrollConfig.defaultEasingLogic = {
       ease: (t: number, b: number, c: number, d: number): number => {
@@ -22,6 +22,11 @@ export class AppComponent {
       }
     };
     PageScrollConfig.defaultDuration = 750;
+  }
+
+
+  ngOnInit(): void {
+    this._wowService.init();
   }
 
   get isNavbarSticky$() {

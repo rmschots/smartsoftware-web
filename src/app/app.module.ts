@@ -15,14 +15,16 @@ import { ContactComponent } from './components/sections/contact/contact.componen
 import { CallToActionComponent } from './components/sections/call-to-action/call-to-action.component';
 import { SloganComponent } from './components/sections/slogan/slogan.component';
 import { TellUsComponent } from './components/sections/tell-us/tell-us.component';
+import { NgwWowModule } from 'ngx-wow';
 
 const SINGLETON_MODULES = [
   BrowserModule,
   BrowserAnimationsModule,
   AppRoutingModule,
   NgxPageScrollModule,
-  SharedModule.forRoot(),
-  FlexLayoutModule
+  FlexLayoutModule,
+  NgwWowModule.forRoot(),
+  SharedModule.forRoot()
 ];
 
 const CONTAINERS = [
