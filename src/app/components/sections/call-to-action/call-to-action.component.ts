@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-call-to-action',
@@ -7,4 +7,9 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CallToActionComponent {
+  @Output() tellUsClick: EventEmitter<boolean> = new EventEmitter<boolean>();
+
+  clickTellUs() {
+    this.tellUsClick.next(true);
+  }
 }

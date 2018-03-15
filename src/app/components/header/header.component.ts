@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, HostListener, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, EventEmitter, HostListener, Output, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -6,6 +6,7 @@ import { AfterViewInit, Component, ElementRef, HostListener, ViewChild } from '@
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements AfterViewInit {
+  @Output() tellUsClick: EventEmitter<boolean> = new EventEmitter<boolean>();
   @ViewChild('canvasContainer') elementRef: ElementRef;
   private container: HTMLElement;
 
@@ -45,6 +46,10 @@ export class HeaderComponent implements AfterViewInit {
 
     this.rendererer();
     this.animate();
+  }
+
+  clickTellUs() {
+    this.tellUsClick.next(true);
   }
 
   rendererer() {

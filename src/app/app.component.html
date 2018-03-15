@@ -1,5 +1,5 @@
 <header id="top">
-  <app-header></app-header>
+  <app-header (tellUsClick)="openTellUs($event)"></app-header>
 </header>
 <nav>
   <app-navbar class="mat-elevation-z6"></app-navbar>
@@ -23,11 +23,11 @@
 </section>
 
 <section>
-  <app-call-to-action></app-call-to-action>
+  <app-call-to-action (tellUsClick)="openTellUs($event)"></app-call-to-action>
 </section>
 
-<section>
-  <app-tell-us></app-tell-us>
+<section  class="section-appearing" [ngClass]="{'section-visible': tellUsOpen$ | async}">
+  <app-tell-us id="tell-us"></app-tell-us>
 </section>
 
 <section>

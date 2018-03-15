@@ -1,7 +1,9 @@
-import { ChangeDetectionStrategy, Component, ElementRef, HostListener, OnInit } from '@angular/core';
-import { PageScrollConfig } from 'ngx-page-scroll';
+import { ChangeDetectionStrategy, Component, ElementRef, HostListener, Inject, OnInit } from '@angular/core';
+import { PageScrollConfig, PageScrollInstance, PageScrollService } from 'ngx-page-scroll';
 import { SectionService } from './shared/services/section.service';
 import { NgwWowService } from 'ngx-wow';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +12,14 @@ import { NgwWowService } from 'ngx-wow';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent implements OnInit {
-  constructor(private el: ElementRef, private _sectionService: SectionService, private _wowService: NgwWowService) {
+
+  tellUsOpen$ = new BehaviorSubject<boolean>(false);
+
+  constructor(private el: ElementRef,
+              private _sectionService: SectionService,
+              private _wowService: NgwWowService,
+              private _pageScrollService: PageScrollService,
+              @Inject(DOCUMENT) private document: any) {
     PageScrollConfig.defaultScrollOffset = 104;
     PageScrollConfig.defaultEasingLogic = {
       ease: (t: number, b: number, c: number, d: number): number => {
@@ -36,5 +45,16 @@ export class AppComponent implements OnInit {
   @HostListener('window:scroll', [])
   onWindowScroll() {
     this._sectionService.refreshCurrentSectionName();
+  }
+
+  openTellUs(scrollTo: boolean) {
+    this.tellUsOpen$.next(true);
+    if (scrollTo) {
+      setTimeout(() => {
+        const pageScrollInstance: PageScrollInstance = PageScrollInstance.simpleInstance(this.document, '#tell-us');
+        this._pageScrollService.start(pageScrollInstance);
+      }, 0);
+    }
+
   }
 }
