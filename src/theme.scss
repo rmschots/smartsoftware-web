@@ -1,10 +1,10 @@
 @import '~@angular/material/theming';
 
-$app-primary-palette: mat-palette($mat-light-green);
+$app-primary-palette: mat-palette($mat-green, 600);
 $app-accent-palette: mat-palette($mat-light-blue);
 $app-warn-palette: mat-palette($mat-deep-orange);
 
-$app-theme: mat-dark-theme($app-primary-palette, $app-accent-palette, $app-warn-palette);
+$app-theme: mat-light-theme($app-primary-palette, $app-accent-palette, $app-warn-palette);
 
 $app-background-palette: map-get($app-theme, background);
 $app-foreground-palette: map-get($app-theme, foreground);
@@ -15,9 +15,12 @@ $app-warn: mat-color($app-warn-palette);
 $app-background: mat-color($app-background-palette, background);
 $app-header-background: #1c92d2;
 $app-header-foreground: #fff;
-$app-body-background1: #fff;
-$app-body-background2: $app-primary;
-$app-foreground: mat-color($app-foreground-palette, base);
+$app-nav-background: mat-color($app-background-palette, app-bar);
+$app-background-alt: $app-primary;
+$app-background-card: mat-color($app-background-palette, card);
+$app-foreground-alt: #fff;
+$app-foreground: mat-color($app-foreground-palette, text);
+$app-foreground-sub: mat-color($app-foreground-palette, secondary-text);
 $app-link: mat-color($app-foreground-palette, text);
 $app-link-hover: mat-color($app-foreground-palette, text, .3);
 

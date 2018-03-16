@@ -19,6 +19,8 @@ body {
   font-family: $app-font;
   font-size: 14px;
   margin: 0;
+  color: $app-foreground;
+  background: $app-background;
 }
 
 .container {
@@ -47,20 +49,18 @@ body {
 }
 
 .heading {
-  color: #484d53;
   font-family: $app-font-bold;
   line-height: 38px;
 }
 
 .subheading {
-  color: #6a727b;
   font-family: $app-font;
   line-height: 38px;
   margin: 30px 0 50px;
 }
 
-.white {
-  color: white;
+.text-alt {
+  color: $app-foreground-alt;
 }
 
 .text-center {
@@ -76,7 +76,7 @@ section .container {
 }
 
 .muted {
-  color: #bbbbbb !important;
+  color: $app-foreground-sub;
 }
 
 .light {
@@ -87,12 +87,8 @@ section .container {
   margin: 0 !important;
 }
 
-.gray {
-  color: #6a727b;
-}
-
 .accent {
-  color: #7cc576 !important;
+  color: $app-primary;
 }
 
 button {
@@ -101,7 +97,6 @@ button {
 }
 
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
-  color: inherit;
   font-weight: 500;
 }
 
@@ -132,7 +127,7 @@ p {
   margin: 20px 0;
 
   &.small {
-    color: #6a727b;
+    color: $app-foreground-sub;
     font-size: 18px;
     line-height: 36px;
   }

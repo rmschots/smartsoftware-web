@@ -1,3 +1,5 @@
+@import '../../../../theme';
+
 :host {
   display: block;
 }
@@ -19,14 +21,13 @@
 }
 
 .jobs .job .date {
-  color: #6a727b;
-  margin-right: 20px;
-  display: inline-flex;
   align-items: center;
+  color: $app-foreground-sub;
+  display: inline-flex;
+  margin-right: 20px;
 
   mat-icon {
-    color: #bbbbbb;
-    margin-right: 10px;
     font-size: 24px;
+    margin-right: 10px;
   }
 }

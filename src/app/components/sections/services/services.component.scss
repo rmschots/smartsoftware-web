@@ -14,20 +14,33 @@
     height: 100%;
     width: 100%;
   }
+
   .background-device {
     position: absolute;
     width: 100%;
   }
+
   .img-helper {
     display: inline-block;
     height: 25%;
     vertical-align: middle;
   }
+
   .book {
     display: block;
     margin: 0 auto;
     position: relative;
     vertical-align: middle;
     width: 80%;
+  }
+
+  .tablet-background {
+    background: white;
+    border-radius: 5%;
+    height: 90%;
+    left: 5%;
+    position: absolute;
+    top: 5%;
+    width: 90%;
   }
 }

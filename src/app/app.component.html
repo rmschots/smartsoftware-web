@@ -13,7 +13,7 @@
 </section>
 
 <section>
-  <app-slogan></app-slogan>
+  <app-slogan class="text-alt"></app-slogan>
 </section>
 
 <section>
@@ -23,7 +23,7 @@
 </section>
 
 <section>
-  <app-call-to-action (tellUsClick)="openTellUs($event)"></app-call-to-action>
+  <app-call-to-action class="text-alt" (tellUsClick)="openTellUs($event)"></app-call-to-action>
 </section>
 
 <section  class="section-appearing" [ngClass]="{'section-visible': tellUsOpen$ | async}">
