@@ -1,17 +1,25 @@
 <div class="container">
-  <div fxLayout="row" *ngIf="contactData$ | async as contactData">
+  <div fxLayout="row" *ngIf="contactData$ | async as contactData; else loading">
     <div fxFlex="50" class="text-left text-center-mobile contact-details">
       <h3 class="heading no-margin wow animated fadeInUp">{{ contactData.title }}</h3>
       <h4 class="subheading muted no-margin wow animated fadeInUp">{{ contactData.subTitle }}</h4>
       <div class="details">
         <h6 class="heading no-margin wow animated fadeInUp">{{ contactData.address.title }}</h6>
-        <p class="small muted no-margin wow animated fadeInUp">{{ contactData.address.street }}<br>{{ contactData.address.place }}</p>
+        <p class="small muted no-margin wow animated fadeInUp">
+          {{ contactData.address.street }}
+          <br>
+          {{ contactData.address.place }}</p>
       </div>
       <div class="details">
-        <h4 class="subheading accent no-margin wow animated fadeInUp">{{ contactData.phone }}<br>{{ contactData.email }}</h4>
+        <h4 class="subheading accent no-margin wow animated fadeInUp">
+          {{ contactData.phone }}
+          <br>
+          {{ contactData.email }}
+        </h4>
       </div>
     </div>
-    <form fxFlex="50" fxLayout="column" fxLayoutGap="20px" [formGroup]="contactFormGroup" class="mail-form wow animated fadeInUp">
+    <form fxFlex="50" fxLayout="column" fxLayoutGap="20px" [formGroup]="contactFormGroup"
+          class="mail-form wow animated fadeInUp">
       <div fxLayout="row">
         <div fxFlex="50" class="field-padding">
           <mat-form-field>
@@ -41,3 +49,6 @@
     </form>
   </div>
 </div>
+<ng-template #loading>
+  <app-loading-spinner></app-loading-spinner>
+</ng-template>

@@ -1,4 +1,7 @@
+@import '../../../theme';
+
 :host {
+  background: $app-body-background1;
   display: flex;
   height: 64px;
   padding-bottom: 20px;
@@ -6,20 +9,19 @@
   top: 0;
   width: 100%;
   z-index: 2;
-  background: white;
+}
 
-  ul {
-    list-style: none;
-    margin-bottom: 0;
-    padding-left: 0;
+ul {
+  list-style: none;
+  margin-bottom: 0;
+  padding-left: 0;
 
-    li {
-      margin-left: 40px;
-      float: left;
+  li {
+    float: left;
+    margin-left: 40px;
 
-      button {
-        font-size: 18px;
-      }
+    button {
+      font-size: 18px;
     }
   }
 }

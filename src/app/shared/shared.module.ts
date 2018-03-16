@@ -2,13 +2,15 @@ import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { SectionService } from './services/section.service';
-import { MatButtonModule, MatFormFieldModule, MatIconModule, MatInputModule } from '@angular/material';
+import { MatButtonModule, MatFormFieldModule, MatIconModule, MatInputModule, MatProgressSpinnerModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgwWowModule } from 'ngx-wow';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 
-const COMPONENTS = [];
+const COMPONENTS = [
+  LoadingSpinnerComponent
+];
 
 const SERVICES = [
   SectionService
@@ -23,7 +25,8 @@ const MATERIAL_MODULES = [
   MatButtonModule,
   MatIconModule,
   MatFormFieldModule,
-  MatInputModule
+  MatInputModule,
+  MatProgressSpinnerModule
 ];
 
 const MODULES = [
@@ -47,7 +50,8 @@ const MODULES = [
   ],
   declarations: [
     ...COMPONENTS,
-    ...PIPES
+    ...PIPES,
+    LoadingSpinnerComponent
   ]
 })
 export class SharedModule {

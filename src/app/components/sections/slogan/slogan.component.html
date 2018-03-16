@@ -1,5 +1,5 @@
 <div class="container">
-  <div *ngIf="sloganData$ | async as sloganData">
+  <div *ngIf="sloganData$ | async as sloganData; else loading">
     <div fxFlex="70" fxFlexOffset="15" class="text-center wow animated fadeInUp">
       <p class="white">
         {{ sloganData.title }}
@@ -7,3 +7,6 @@
     </div>
   </div>
 </div>
+<ng-template #loading>
+  <app-loading-spinner></app-loading-spinner>
+</ng-template>

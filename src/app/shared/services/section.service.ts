@@ -1,28 +1,38 @@
 import { Injectable } from '@angular/core';
-import { Section } from './section';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class SectionService {
   private _currentSectionName$: BehaviorSubject<string> = new BehaviorSubject<string>(undefined);
-  private _sections$: BehaviorSubject<Section[]> = new BehaviorSubject<Section[]>([]);
   private _isSticky$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  private _sectionNames$: BehaviorSubject<string[]> = new BehaviorSubject<string[]>([]);
 
-  addSection(section: Section) {
-    this.sectionPosition(section);
+  private _sectionPositionMap: Map<string, number> = new Map<string, number>();
+
+  addSection(sectionName: string, position: number) {
+    this._sectionPositionMap.set(sectionName, position);
+    if (!this._sectionNames$.getValue().includes(sectionName)) {
+      const updatedSectionNames = this._sectionNames$.getValue().concat(sectionName);
+      updatedSectionNames.sort((a: string, b: string) => {
+        return this._sectionPositionMap.get(b) - this._sectionPositionMap.get(a);
+      });
+      this._sectionNames$.next(updatedSectionNames);
+    }
+
+    this.refreshCurrentSectionName();
   }
 
   get currentSectionName$(): Observable<string> {
-    return this._currentSectionName$.asObservable();
+    return this._currentSectionName$.distinctUntilChanged();
   }
 
   get sectionNames$(): Observable<string[]> {
-    return this._sections$.map(sections => sections.map(section => section.name));
+    return this._sectionNames$.map(names => names.slice());
   }
 
   get isSticky$(): Observable<boolean> {
-    return this._isSticky$.asObservable();
+    return this._isSticky$.distinctUntilChanged();
   }
 
   scrollTop() {
@@ -30,46 +40,27 @@ export class SectionService {
     this._isSticky$.next(false);
   }
 
-  sectionPosition(section: Section): void {
-    //filter out the old position if it has been set
-    const sections = this._sections$.getValue().filter(item => item.name !== section.name);
-    //set the new position
-    sections.push(section);
-    this._sections$.next(sections);
-
-    this.refreshCurrentSectionName();
-  }
-
   refreshCurrentSectionName(): void {
-    //sort the section based on their appearance order
-    this.sortSections();
-
+    const currentSectionNames = this._sectionNames$.getValue();
     //if the page has already been scrolled find the current name
     if (window.scrollY > 0) {
-      const topSection = this._sections$.getValue().find(section => {
-        return (section.position - window.scrollY - 104 - 1) < 0;
+      const topSectionName = currentSectionNames.find(sectionName => {
+        return (this._sectionPositionMap.get(sectionName) - window.scrollY - 104 - 1) < 0;
       });
 
-      this._isSticky$.next(!!topSection);
-      if (!topSection) {
+      this._isSticky$.next(!!topSectionName);
+      if (!topSectionName) {
         this._isSticky$.next(false);
       }
-      if (topSection) {
-        this._currentSectionName$.next(topSection.name);
+      if (topSectionName) {
+        this._currentSectionName$.next(topSectionName);
       } else {
-        const firstSection = this._sections$.getValue()[this._sections$.getValue().length - 1];
-        this._currentSectionName$.next(firstSection ? firstSection.name : undefined);
+        const firstSectionName = currentSectionNames[currentSectionNames.length - 1];
+        this._currentSectionName$.next(firstSectionName ? firstSectionName : undefined);
       }
     } else {
-      const firstSection = this._sections$.getValue()[this._sections$.getValue().length - 1];
-      this._currentSectionName$.next(firstSection ? firstSection.name : undefined);
+      const firstSectionName = currentSectionNames[currentSectionNames.length - 1];
+      this._currentSectionName$.next(firstSectionName ? firstSectionName : undefined);
     }
   }
-
-  private sortSections(): void {
-    this._sections$.getValue().sort((a: any, b: any) => {
-      return b.position - a.position;
-    });
-  }
-
 }

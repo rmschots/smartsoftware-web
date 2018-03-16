@@ -5,7 +5,7 @@
   <div class="nav-links">
     <ul>
       <li *ngFor="let sectionName of sectionNames$ | async">
-        <button *ngIf="activeSectionName$ | async; let activeSectionName" mat-button
+        <button *ngIf="activeSectionName$ | async as activeSectionName" mat-button
                 [ngClass]="{ 'active-section': sectionName === activeSectionName}"
                 pageScroll [pageScrollTarget]="'#'+ sectionName">
           {{ sectionName }}

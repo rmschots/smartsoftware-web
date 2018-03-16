@@ -1,11 +1,16 @@
 <div class="container">
-  <div fxLayout="col" *ngIf="callToActionData$ | async as callToActionData">
+  <div fxLayout="col" *ngIf="callToActionData$ | async as callToActionData; else loading">
     <div fxFlex="70" class="text-left text-center-mobile wow animated fadeInUp">
       <h2 class="heading white top-fit">{{ callToActionData.title }}</h2>
       <h4 class="subheading white no-margin">{{ callToActionData.subTitle }}</h4>
     </div>
     <div fxFlex="30" fxFlexAlign="center" class="text-center-mobile">
-      <button mat-button (click)="clickTellUs()" class="mat-elevation-z2  wow animated fadeInUp">{{ callToActionData.action1 }}</button>
+      <button mat-button (click)="clickTellUs()" class="mat-elevation-z2  wow animated fadeInUp">
+        {{ callToActionData.action1 }}
+      </button>
     </div>
   </div>
 </div>
+<ng-template #loading>
+  <app-loading-spinner></app-loading-spinner>
+</ng-template>

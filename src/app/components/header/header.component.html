@@ -4,7 +4,7 @@
   <div fxFlex="50">
     <img id="header-logo" src="assets/img/logo-stacked.png" alt="Smart Sofware logo">
   </div>
-  <div fxFlex="50" *ngIf="headerData$ | async as headerData">
+  <div fxFlex="50" *ngIf="headerData$ | async as headerData; else loading">
     <h2 class="heading">{{ headerData.title }}</h2>
     <h4 class="subheading">{{ headerData.subTitle }}</h4>
     <p>{{ headerData.content1 }}</p>
@@ -18,3 +18,6 @@
     </div>
   </div>
 </div>
+<ng-template #loading>
+  <app-loading-spinner fxFlex="50"></app-loading-spinner>
+</ng-template>

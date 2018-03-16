@@ -30,7 +30,7 @@ export class SectionComponent extends Unsubscribable implements AfterViewInit {
   }
 
   private notifyChangePosition() {
-    this._sectionService.addSection({name: this.sectionName, position: this.element.nativeElement.offsetTop});
+    this._sectionService.addSection(this.sectionName, this.element.nativeElement.offsetTop);
   }
 
 }

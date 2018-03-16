@@ -1,3 +1,5 @@
+@import '../../../../theme';
+
 :host {
   background: #7cc576;
   display: block;
@@ -8,13 +10,13 @@
 }
 
 button {
+  color: white;
+  font-family: $app-font-bold;
   font-size: 18px;
   height: 60px;
-  color: white;
-  font-family: 'Proxima Bold';
 }
 
 .top-fit {
-  margin-top: 15px;
   margin-bottom: 0;
+  margin-top: 15px;
 }

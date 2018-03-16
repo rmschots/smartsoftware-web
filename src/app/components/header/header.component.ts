@@ -1,8 +1,8 @@
 import { AfterViewInit, Component, ElementRef, EventEmitter, HostListener, Output, ViewChild } from '@angular/core';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
-import { Section } from '../../shared/services/section';
 import { AfsSection } from '../../shared/models/afs-section';
+import { SectionService } from '../../shared/services/section.service';
 
 @Component({
   selector: 'app-header',
@@ -14,6 +14,8 @@ export class HeaderComponent implements AfterViewInit {
   @ViewChild('canvasContainer') elementRef: ElementRef;
 
   headerData$: Observable<AfsSection>;
+
+  private pauseRendering = false;
 
   private container: HTMLElement;
   private scene;
@@ -38,7 +40,7 @@ export class HeaderComponent implements AfterViewInit {
 
   private particles = [];
 
-  constructor(private _afs: AngularFirestore) {
+  constructor(private _afs: AngularFirestore, private _sectionService: SectionService) {
     this.headerData$ = _afs.doc<AfsSection>('sections/header').valueChanges();
   }
 
@@ -57,6 +59,12 @@ export class HeaderComponent implements AfterViewInit {
 
     this.rendererer();
     this.animate();
+    this._sectionService.isSticky$.subscribe(isSticky => {
+      this.pauseRendering = isSticky;
+      if (!isSticky) {
+        this.animate();
+      }
+    });
   }
 
   clickTellUs() {
@@ -94,6 +102,9 @@ export class HeaderComponent implements AfterViewInit {
   animate() {
     const self: HeaderComponent = this;
     (function render() {
+      if (self.pauseRendering) {
+        return;
+      }
       requestAnimationFrame(render);
       self.update();
     }());
