@@ -16,6 +16,8 @@ import { CallToActionComponent } from './components/sections/call-to-action/call
 import { SloganComponent } from './components/sections/slogan/slogan.component';
 import { TellUsComponent } from './components/sections/tell-us/tell-us.component';
 import { NgwWowModule } from 'ngx-wow';
+import { AngularFireModule } from 'angularfire2';
+import { environment } from '../environments/environment';
 
 const SINGLETON_MODULES = [
   BrowserModule,
@@ -24,7 +26,8 @@ const SINGLETON_MODULES = [
   NgxPageScrollModule,
   FlexLayoutModule,
   NgwWowModule.forRoot(),
-  SharedModule.forRoot()
+  SharedModule.forRoot(),
+  AngularFireModule.initializeApp(environment.firebase)
 ];
 
 const CONTAINERS = [

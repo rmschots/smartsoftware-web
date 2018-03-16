@@ -1,5 +1,8 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { AngularFirestore } from 'angularfire2/firestore';
+import { Observable } from 'rxjs/Observable';
+import { AfsContactSection } from '../../../shared/models/afs-contact-section';
 
 @Component({
   selector: 'app-contact',
@@ -9,14 +12,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class ContactComponent {
 
+  contactData$: Observable<AfsContactSection>;
   contactFormGroup: FormGroup;
 
-  constructor(fb: FormBuilder) {
-    this.contactFormGroup = fb.group({
-      name: ['', Validators.required],
-      email: ['', Validators.email],
-      subject: ['', Validators.required],
-      content: ['', Validators.required]
-    });
+  constructor(fb: FormBuilder, private _afs: AngularFirestore) {
+    this.contactData$ = _afs.doc<AfsContactSection>('sections/contact').valueChanges();
   }
 }

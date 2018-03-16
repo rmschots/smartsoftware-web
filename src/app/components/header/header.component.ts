@@ -1,4 +1,8 @@
 import { AfterViewInit, Component, ElementRef, EventEmitter, HostListener, Output, ViewChild } from '@angular/core';
+import { AngularFirestore } from 'angularfire2/firestore';
+import { Observable } from 'rxjs/Observable';
+import { Section } from '../../shared/services/section';
+import { AfsSection } from '../../shared/models/afs-section';
 
 @Component({
   selector: 'app-header',
@@ -8,8 +12,10 @@ import { AfterViewInit, Component, ElementRef, EventEmitter, HostListener, Outpu
 export class HeaderComponent implements AfterViewInit {
   @Output() tellUsClick: EventEmitter<boolean> = new EventEmitter<boolean>();
   @ViewChild('canvasContainer') elementRef: ElementRef;
-  private container: HTMLElement;
 
+  headerData$: Observable<AfsSection>;
+
+  private container: HTMLElement;
   private scene;
   private camera;
   private renderer;
@@ -29,7 +35,12 @@ export class HeaderComponent implements AfterViewInit {
   private amtX = 50;
   private amtY = 50;
   private sep = 100;
+
   private particles = [];
+
+  constructor(private _afs: AngularFirestore) {
+    this.headerData$ = _afs.doc<AfsSection>('sections/header').valueChanges();
+  }
 
   ngAfterViewInit(): void {
     this.container = this.elementRef.nativeElement;

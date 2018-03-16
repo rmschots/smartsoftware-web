@@ -5,6 +5,8 @@ import { SectionService } from './services/section.service';
 import { MatButtonModule, MatFormFieldModule, MatIconModule, MatInputModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgwWowModule } from 'ngx-wow';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
 
 const COMPONENTS = [];
 
@@ -30,6 +32,7 @@ const MODULES = [
   FormsModule,
   ReactiveFormsModule,
   NgwWowModule,
+  AngularFirestoreModule,
   ...MATERIAL_MODULES
 ];
 

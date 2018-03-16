@@ -1,5 +1,5 @@
 <div class="container">
-  <div fxLayout="col">
+  <div fxLayout="col" *ngIf="servicesData$ | async as servicesData">
     <div fxFlex="50">
       <div class="book-preview">
         <img src="assets/img/kindle.png" class="background-device" alt="">
@@ -10,10 +10,10 @@
       </div>
     </div>
     <div fxFlex="50">
-      <h2 class="heading wow animated fadeInUp">What we do</h2>
-      <h4 class="subheading wow animated fadeInUp">Smart Software develops enterprise-grade web, mobile and software platforms for businesses.</h4>
-      <p class="small wow animated fadeInUp">We build applications that generate revenue using the latest in web and data technologies. Our approach is different than most, because we take the time to learn your business inside-and-out before we make a single technology choice.  </p>
-      <p class="small wow animated fadeInUp">The end product you're looking for may be a mobile app, a revamped company website, or a new web application, but we know any technology is just a means for making your business more intelligent, more efficient and ultimately more profitable. </p>
+      <h2 class="heading wow animated fadeInUp">{{ servicesData.title }}</h2>
+      <h4 class="subheading wow animated fadeInUp">{{ servicesData.subTitle }}</h4>
+      <p class="small wow animated fadeInUp">{{ servicesData.content1 }}</p>
+      <p class="small wow animated fadeInUp">{{ servicesData.content2 }}</p>
     </div>
   </div>
 </div>
