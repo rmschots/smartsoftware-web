@@ -1,10 +1,10 @@
-<div #canvasContainer id="canvas-container">
+<div #canvasContainer id="canvas-container" class="app-header-background">
 </div>
 <div class="container header-container" fxLayout>
   <div fxFlex="50">
     <img id="header-logo" src="assets/img/logo-stacked.png" alt="Smart Sofware logo">
   </div>
-  <div fxFlex="50" *ngIf="headerData$ | async as headerData; else loading">
+  <div fxFlex="50" *ngIf="headerData$ | async as headerData; else loading" class="app-header-foreground">
     <h2 class="heading">{{ headerData.title }}</h2>
     <h4 class="subheading">{{ headerData.subTitle }}</h4>
     <p>{{ headerData.content1 }}</p>

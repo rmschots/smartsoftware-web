@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, ElementRef, HostListener, Inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, HostBinding, HostListener, Inject, OnInit } from '@angular/core';
 import { PageScrollConfig, PageScrollInstance, PageScrollService } from 'ngx-page-scroll';
 import { SectionService } from './shared/services/section.service';
 import { NgwWowService } from 'ngx-wow';
@@ -12,6 +12,8 @@ import { DOCUMENT } from '@angular/common';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent implements OnInit {
+
+  @HostBinding('class') componentCssClass = '';
 
   tellUsOpen$ = new BehaviorSubject<boolean>(false);
 
@@ -33,6 +35,13 @@ export class AppComponent implements OnInit {
     PageScrollConfig.defaultDuration = 750;
   }
 
+  themeChanged(isDark: boolean) {
+    if (isDark) {
+      this.componentCssClass = 'dark-theme';
+    } else {
+      this.componentCssClass = '';
+    }
+  }
 
   ngOnInit(): void {
     this._wowService.init();

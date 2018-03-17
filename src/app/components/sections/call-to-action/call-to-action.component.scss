@@ -1,7 +1,6 @@
-@import '../../../../theme';
+@import '../../../../variables';
 
 :host {
-  background: $app-background-alt;
   display: block;
 
   .container {

@@ -1,5 +1,3 @@
-@import '../../../../theme';
-
 :host {
   display: block;
 }
@@ -22,7 +20,6 @@
 
 .jobs .job .date {
   align-items: center;
-  color: $app-foreground-sub;
   display: inline-flex;
   margin-right: 20px;
 

@@ -2,8 +2,9 @@
   <app-header (tellUsClick)="openTellUs($event)"></app-header>
 </header>
 <nav>
-  <app-navbar></app-navbar>
-  <app-navbar class="navbar-sticky mat-elevation-z6" *ngIf="isNavbarSticky$ | async"></app-navbar>
+  <app-navbar class="app-nav-background app-nav-foreground" (themeChange)="themeChanged($event)"></app-navbar>
+  <app-navbar class="navbar-sticky mat-elevation-z6 app-nav-background app-nav-foreground"
+              *ngIf="isNavbarSticky$ | async" (themeChange)="themeChanged($event)"></app-navbar>
 </nav>
 
 <section>
@@ -13,7 +14,7 @@
 </section>
 
 <section>
-  <app-slogan class="text-alt"></app-slogan>
+  <app-slogan class="text-alt background-alt"></app-slogan>
 </section>
 
 <section>
@@ -23,11 +24,11 @@
 </section>
 
 <section>
-  <app-call-to-action class="text-alt" (tellUsClick)="openTellUs($event)"></app-call-to-action>
+  <app-call-to-action class="text-alt background-alt" (tellUsClick)="openTellUs($event)"></app-call-to-action>
 </section>
 
-<section  class="section-appearing" [ngClass]="{'section-visible': tellUsOpen$ | async}">
-  <app-tell-us id="tell-us"></app-tell-us>
+<section class="section-appearing" [ngClass]="{'section-visible': tellUsOpen$ | async}">
+  <app-tell-us id="tell-us" class="app-background-card"></app-tell-us>
 </section>
 
 <section>

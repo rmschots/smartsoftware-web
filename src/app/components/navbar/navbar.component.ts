@@ -1,7 +1,8 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Output } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { SectionService } from '../../shared/services/section.service';
 import { Unsubscribable } from '../../shared/util/unsubscribable';
+import { MatButtonToggleChange } from '@angular/material';
 
 @Component({
   selector: 'app-navbar',
@@ -10,6 +11,8 @@ import { Unsubscribable } from '../../shared/util/unsubscribable';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NavbarComponent extends Unsubscribable {
+
+  @Output() themeChange = new EventEmitter<boolean>();
 
   constructor(private _sectionService: SectionService) {
     super();
@@ -25,5 +28,9 @@ export class NavbarComponent extends Unsubscribable {
 
   scrollTop() {
     this._sectionService.scrollTop();
+  }
+
+  themeChanged(changeEvent: MatButtonToggleChange) {
+    this.themeChange.next(changeEvent.source.checked);
   }
 }

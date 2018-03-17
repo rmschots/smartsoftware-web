@@ -1,7 +1,6 @@
-@import '../../../theme';
+@import '../../../variables';
 
 #canvas-container {
-  background: linear-gradient(to right, #f2fcfe, $app-header-background);
   height: 100%;
   overflow: hidden;
   position: absolute;
@@ -24,28 +23,24 @@ canvas {
   }
 
   .heading {
-    color: $app-header-foreground;
     font-family: $app-font-bold;
     font-size: 40px;
     margin: 10px 0;
   }
 
   .subheading {
-    color: $app-header-foreground;
     font-size: 24px;
     margin: 10px 0px 30px;
     opacity: .5;
   }
 
   p {
-    color: $app-header-foreground;
     font-size: 20px;
     line-height: 34px;
     margin: 20px 0;
   }
 
   button {
-    color: $app-header-foreground;
     font-family: $app-font-bold;
     font-size: 18px;
     height: 60px;

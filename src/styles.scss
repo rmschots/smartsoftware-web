@@ -2,7 +2,7 @@
 
 @include mat-core();
 @import './theme';
-@include angular-material-theme($app-theme);
+@import './variables';
 
 @font-face {
   font-family: $app-font;
@@ -19,8 +19,6 @@ body {
   font-family: $app-font;
   font-size: 14px;
   margin: 0;
-  color: $app-foreground;
-  background: $app-background;
 }
 
 .container {
@@ -59,10 +57,6 @@ body {
   margin: 30px 0 50px;
 }
 
-.text-alt {
-  color: $app-foreground-alt;
-}
-
 .text-center {
   text-align: center;
 }
@@ -75,20 +69,12 @@ section .container {
   padding: 140px 0;
 }
 
-.muted {
-  color: $app-foreground-sub;
-}
-
 .light {
   font-family: $app-font;
 }
 
 .no-margin {
   margin: 0 !important;
-}
-
-.accent {
-  color: $app-primary;
 }
 
 button {
@@ -127,7 +113,6 @@ p {
   margin: 20px 0;
 
   &.small {
-    color: $app-foreground-sub;
     font-size: 18px;
     line-height: 36px;
   }
