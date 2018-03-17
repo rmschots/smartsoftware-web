@@ -16,7 +16,7 @@
   $app-foreground: mat-color($app-foreground-palette, text);
   $app-background: mat-color($app-background-palette, background);
   $app-header-background: #1c92d2;
-  $app-header-foreground: $app-foreground;
+  $app-header-foreground: #fff;
   $app-nav-background: mat-color($app-background-palette, app-bar);
   $app-background-alt: $app-primary;
   $app-background-card: mat-color($app-background-palette, card);
