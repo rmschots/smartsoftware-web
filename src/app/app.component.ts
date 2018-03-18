@@ -76,7 +76,7 @@ export class AppComponent implements OnInit {
     this._sectionService.refreshCurrentSectionName();
   }
 
-  openTellUs(scrollTo: boolean) {
+  openTellUs() {
     this._dialog.open(TellUsDialogComponent);
   }
 
