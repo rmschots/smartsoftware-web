@@ -14,17 +14,20 @@ import { CareersComponent } from './components/sections/careers/careers.componen
 import { ContactComponent } from './components/sections/contact/contact.component';
 import { CallToActionComponent } from './components/sections/call-to-action/call-to-action.component';
 import { SloganComponent } from './components/sections/slogan/slogan.component';
-import { TellUsComponent } from './components/sections/tell-us/tell-us.component';
 import { NgwWowModule } from 'ngx-wow';
 import { AngularFireModule } from 'angularfire2';
 import { environment } from '../environments/environment';
 import { RecaptchaModule } from 'ng-recaptcha';
+import { MatDialogModule } from '@angular/material';
+import { OverlayContainer, OverlayModule } from '@angular/cdk/overlay';
 
 const SINGLETON_MODULES = [
   BrowserModule,
   BrowserAnimationsModule,
   AppRoutingModule,
   NgxPageScrollModule,
+  MatDialogModule,
+  OverlayModule,
   FlexLayoutModule,
   NgwWowModule.forRoot(),
   RecaptchaModule.forRoot(),
@@ -41,8 +44,7 @@ const CONTAINERS = [
   CareersComponent,
   ContactComponent,
   CallToActionComponent,
-  SloganComponent,
-  TellUsComponent
+  SloganComponent
 ];
 
 @NgModule({

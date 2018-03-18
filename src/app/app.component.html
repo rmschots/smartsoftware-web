@@ -1,5 +1,5 @@
 <header id="top">
-  <app-header [headerData]="headerData$ | async" (tellUsClick)="openTellUs($event)"></app-header>
+  <app-header [headerData]="headerData$ | async" (tellUsClick)="openTellUs()"></app-header>
 </header>
 <nav>
   <app-navbar class="app-nav-background app-nav-foreground" (themeChange)="themeChanged($event)"></app-navbar>
@@ -24,11 +24,8 @@
 </section>
 
 <section>
-  <app-call-to-action [callToActionData]="callToActionData$ | async" class="text-alt background-alt" (tellUsClick)="openTellUs($event)"></app-call-to-action>
-</section>
-
-<section class="section-appearing" [ngClass]="{'section-visible': tellUsOpen$ | async}">
-  <app-tell-us id="tell-us" class="app-background-card"></app-tell-us>
+  <app-call-to-action [callToActionData]="callToActionData$ | async" class="text-alt background-alt"
+                      (tellUsClick)="openTellUs()"></app-call-to-action>
 </section>
 
 <section>

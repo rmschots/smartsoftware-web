@@ -16,17 +16,3 @@ header {
 .navbar-sticky {
   position: fixed;
 }
-
-.section-appearing {
-  background-color: #eee;
-  height: 0;
-  overflow: hidden;
-  transform: scaleY(0);
-  transform-origin: top;
-  transition: transform .26s ease;
-}
-
-.section-visible {
-  height: auto;
-  transform: scaleY(1);
-}

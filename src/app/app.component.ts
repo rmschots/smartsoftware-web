@@ -1,14 +1,16 @@
 import { ChangeDetectionStrategy, Component, ElementRef, HostBinding, HostListener, Inject, OnInit } from '@angular/core';
-import { PageScrollConfig, PageScrollInstance, PageScrollService } from 'ngx-page-scroll';
+import { PageScrollConfig, PageScrollService } from 'ngx-page-scroll';
 import { SectionService } from './shared/services/section/section.service';
 import { NgwWowService } from 'ngx-wow';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { DOCUMENT } from '@angular/common';
 import { Observable } from 'rxjs/Observable';
 import { AngularFirestore, DocumentChangeAction } from 'angularfire2/firestore';
 import { AfsJobsSection } from './shared/models/afs-jobs-section';
 import { AfsSection } from './shared/models/afs-section';
 import { AfsContactSection } from './shared/models/afs-contact-section';
+import { MatDialog } from '@angular/material';
+import { TellUsDialogComponent } from './components/tell-us-dialog/tell-us-dialog.component';
+import { OverlayContainer } from '@angular/cdk/overlay';
 
 @Component({
   selector: 'app-root',
@@ -20,7 +22,6 @@ export class AppComponent implements OnInit {
 
   @HostBinding('class') componentCssClass = '';
 
-  tellUsOpen$ = new BehaviorSubject<boolean>(false);
   sectionsChange$: Observable<DocumentChangeAction[]>;
 
   headerData$: Observable<AfsSection>;
@@ -35,6 +36,8 @@ export class AppComponent implements OnInit {
               private _wowService: NgwWowService,
               private _pageScrollService: PageScrollService,
               private _afs: AngularFirestore,
+              private _dialog: MatDialog,
+              private _overlayContainer: OverlayContainer,
               @Inject(DOCUMENT) private document: any) {
     PageScrollConfig.defaultScrollOffset = 104;
     PageScrollConfig.defaultEasingLogic = {
@@ -53,8 +56,10 @@ export class AppComponent implements OnInit {
   themeChanged(isDark: boolean) {
     if (isDark) {
       this.componentCssClass = 'dark-theme';
+      this._overlayContainer.getContainerElement().classList.add('dark-theme');
     } else {
       this.componentCssClass = '';
+      this._overlayContainer.getContainerElement().classList.remove('dark-theme');
     }
   }
 
@@ -72,14 +77,7 @@ export class AppComponent implements OnInit {
   }
 
   openTellUs(scrollTo: boolean) {
-    this.tellUsOpen$.next(true);
-    if (scrollTo) {
-      setTimeout(() => {
-        const pageScrollInstance: PageScrollInstance = PageScrollInstance.simpleInstance(this.document, '#tell-us');
-        this._pageScrollService.start(pageScrollInstance);
-      }, 0);
-    }
-
+    this._dialog.open(TellUsDialogComponent);
   }
 
   private initSections() {

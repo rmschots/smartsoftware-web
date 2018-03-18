@@ -2,14 +2,11 @@
   display: block;
 }
 
-.container {
-  padding: 20px 0;
-}
-
 mat-form-field {
   width: 100%;
 }
 
-button {
-  width: 100%;
+.flex-center {
+  display: flex;
+  justify-content: center;
 }

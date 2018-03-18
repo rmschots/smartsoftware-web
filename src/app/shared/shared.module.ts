@@ -5,10 +5,12 @@ import { SectionService } from './services/section/section.service';
 import {
   MatButtonModule,
   MatButtonToggleModule,
+  MatDialogModule,
   MatFormFieldModule,
   MatIconModule,
   MatInputModule,
-  MatProgressSpinnerModule
+  MatProgressSpinnerModule,
+  MatStepperModule
 } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgwWowModule } from 'ngx-wow';
@@ -16,9 +18,15 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 import { RECAPTCHA_SETTINGS, RecaptchaModule, RecaptchaSettings } from 'ng-recaptcha';
 import { RecaptchaFormsModule } from 'ng-recaptcha/forms';
+import { TellUsDialogComponent } from '../components/tell-us-dialog/tell-us-dialog.component';
+
+const DIALOGS = [
+  TellUsDialogComponent
+];
 
 const COMPONENTS = [
-  LoadingSpinnerComponent
+  LoadingSpinnerComponent,
+  ...DIALOGS
 ];
 
 const SERVICES = [
@@ -40,7 +48,9 @@ const MATERIAL_MODULES = [
   MatFormFieldModule,
   MatInputModule,
   MatProgressSpinnerModule,
-  MatButtonToggleModule
+  MatButtonToggleModule,
+  MatStepperModule,
+  MatDialogModule
 ];
 
 const MODULES = [
@@ -68,6 +78,9 @@ const MODULES = [
     ...COMPONENTS,
     ...PIPES,
     LoadingSpinnerComponent
+  ],
+  entryComponents: [
+    ...DIALOGS
   ]
 })
 export class SharedModule {
