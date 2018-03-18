@@ -1,5 +1,5 @@
 <header id="top">
-  <app-header (tellUsClick)="openTellUs($event)"></app-header>
+  <app-header [headerData]="headerData$ | async" (tellUsClick)="openTellUs($event)"></app-header>
 </header>
 <nav>
   <app-navbar class="app-nav-background app-nav-foreground" (themeChange)="themeChanged($event)"></app-navbar>
@@ -9,22 +9,22 @@
 
 <section>
   <app-section sectionName="SERVICES">
-    <app-services></app-services>
+    <app-services [servicesData]="servicesData$ | async"></app-services>
   </app-section>
 </section>
 
 <section>
-  <app-slogan class="text-alt background-alt"></app-slogan>
+  <app-slogan [sloganData]="sloganData$ | async" class="text-alt background-alt"></app-slogan>
 </section>
 
 <section>
   <app-section sectionName="CAREERS">
-    <app-careers></app-careers>
+    <app-careers [careersData]="careersData$ | async"></app-careers>
   </app-section>
 </section>
 
 <section>
-  <app-call-to-action class="text-alt background-alt" (tellUsClick)="openTellUs($event)"></app-call-to-action>
+  <app-call-to-action [callToActionData]="callToActionData$ | async" class="text-alt background-alt" (tellUsClick)="openTellUs($event)"></app-call-to-action>
 </section>
 
 <section class="section-appearing" [ngClass]="{'section-visible': tellUsOpen$ | async}">
@@ -33,6 +33,6 @@
 
 <section>
   <app-section sectionName="CONTACT">
-    <app-contact></app-contact>
+    <app-contact [contactData]="contactData$ | async"></app-contact>
   </app-section>
 </section>

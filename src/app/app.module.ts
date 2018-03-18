@@ -18,6 +18,7 @@ import { TellUsComponent } from './components/sections/tell-us/tell-us.component
 import { NgwWowModule } from 'ngx-wow';
 import { AngularFireModule } from 'angularfire2';
 import { environment } from '../environments/environment';
+import { RecaptchaModule } from 'ng-recaptcha';
 
 const SINGLETON_MODULES = [
   BrowserModule,
@@ -26,6 +27,7 @@ const SINGLETON_MODULES = [
   NgxPageScrollModule,
   FlexLayoutModule,
   NgwWowModule.forRoot(),
+  RecaptchaModule.forRoot(),
   SharedModule.forRoot(),
   AngularFireModule.initializeApp(environment.firebase)
 ];

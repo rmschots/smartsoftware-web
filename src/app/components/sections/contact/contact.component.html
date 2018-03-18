@@ -1,5 +1,5 @@
 <div class="container">
-  <div fxLayout="row" *ngIf="contactData$ | async as contactData; else loading">
+  <div fxLayout="row" *ngIf="contactData; else loading">
     <div fxFlex="50" class="text-left text-center-mobile contact-details">
       <h3 class="heading no-margin wow animated fadeInUp">{{ contactData.title }}</h3>
       <h4 class="subheading muted no-margin wow animated fadeInUp">{{ contactData.subTitle }}</h4>
@@ -18,8 +18,8 @@
         </h4>
       </div>
     </div>
-    <form fxFlex="50" fxLayout="column" fxLayoutGap="20px" [formGroup]="contactFormGroup"
-          class="mail-form wow animated fadeInUp">
+    <form #contactForm fxFlex="50" fxLayout="column" fxLayoutGap="20px" [formGroup]="contactFormGroup"
+          class="mail-form wow animated fadeInUp" (ngSubmit)="onSubmit()" *ngIf="!(formSubmitted$ | async); else submitted">
       <div fxLayout="row">
         <div fxFlex="50" class="field-padding">
           <mat-form-field>
@@ -43,12 +43,19 @@
                     formControlName="content" required></textarea>
         </mat-form-field>
       </div>
-      <div class="row field-padding">
-        <button mat-raised-button color="primary" type="submit">Send</button>
+      <div class="row field-padding form-bottom">
+        <re-captcha formControlName="recaptcha" required></re-captcha>
+        <button mat-raised-button color="primary" type="submit"
+                [disabled]="!contactFormGroup.valid || (formsubmitting$ | async)">
+          Send
+        </button>
       </div>
     </form>
   </div>
 </div>
 <ng-template #loading>
   <app-loading-spinner></app-loading-spinner>
+</ng-template>
+<ng-template #submitted>
+  Contact form has been submitted. We will reply asap.
 </ng-template>

@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Output } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { SectionService } from '../../shared/services/section.service';
+import { SectionService } from '../../shared/services/section/section.service';
 import { Unsubscribable } from '../../shared/util/unsubscribable';
 import { MatButtonToggleChange } from '@angular/material';
 

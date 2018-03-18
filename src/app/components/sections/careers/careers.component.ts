@@ -1,6 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { AngularFirestore } from 'angularfire2/firestore';
-import { Observable } from 'rxjs/Observable';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { AfsJobsSection } from '../../../shared/models/afs-jobs-section';
 
 @Component({
@@ -10,9 +8,5 @@ import { AfsJobsSection } from '../../../shared/models/afs-jobs-section';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CareersComponent {
-  careersData$: Observable<AfsJobsSection>;
-
-  constructor(private _afs: AngularFirestore) {
-    this.careersData$ = _afs.doc<AfsJobsSection>('sections/careers').valueChanges();
-  }
+  @Input() careersData: AfsJobsSection;
 }

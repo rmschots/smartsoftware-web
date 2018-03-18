@@ -1,5 +1,5 @@
 import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, HostBinding, HostListener, Input } from '@angular/core';
-import { SectionService } from '../../shared/services/section.service';
+import { SectionService } from '../../shared/services/section/section.service';
 import { interval } from 'rxjs/observable/interval';
 import { Unsubscribable } from '../../shared/util/unsubscribable';
 

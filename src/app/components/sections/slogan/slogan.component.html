@@ -1,5 +1,5 @@
 <div class="container">
-  <div *ngIf="sloganData$ | async as sloganData; else loading">
+  <div *ngIf="sloganData; else loading">
     <div fxFlex="70" fxFlexOffset="15" class="text-center wow animated fadeInUp">
       <p>
         {{ sloganData.title }}

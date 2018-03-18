@@ -1,6 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import { AngularFirestore } from 'angularfire2/firestore';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { AfsSection } from '../../../shared/models/afs-section';
 
 @Component({
@@ -10,9 +8,5 @@ import { AfsSection } from '../../../shared/models/afs-section';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ServicesComponent {
-  servicesData$: Observable<AfsSection>;
-
-  constructor(private _afs: AngularFirestore) {
-    this.servicesData$ = _afs.doc<AfsSection>('sections/services').valueChanges();
-  }
+  @Input() servicesData: AfsSection;
 }
