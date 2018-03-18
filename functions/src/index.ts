@@ -19,7 +19,7 @@ export const sendContactMessage = functions.firestore
     const contactMessage: ContactMessage = event.data.data();
     const mailOptions: Mail.Options = {
       from: `${contactMessage.name} <${contactMessage.email}>`,
-      to: 'mangelschotsroel@gmail.com',
+      to: ['mdesmet@gmail.com', 'mangelschotsroel@gmail.com'],
       subject: `[Smart software contact form]: ${contactMessage.subject}`,
       text: `Message from: ${contactMessage.name} <${contactMessage.email}>
 
