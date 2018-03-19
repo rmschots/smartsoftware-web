@@ -11,6 +11,7 @@ import { AfsContactSection } from './shared/models/afs-contact-section';
 import { MatDialog } from '@angular/material';
 import { TellUsDialogComponent } from './components/tell-us-dialog/tell-us-dialog.component';
 import { OverlayContainer } from '@angular/cdk/overlay';
+import { CreateYourOwnJobDialogComponent } from "./components/create-your-own-job-dialog/create-your-own-job-dialog.component";
 
 @Component({
   selector: 'app-root',
@@ -78,6 +79,10 @@ export class AppComponent implements OnInit {
 
   openTellUs() {
     this._dialog.open(TellUsDialogComponent);
+  }
+
+  openCreateYourOwnJob() {
+    this._dialog.open(CreateYourOwnJobDialogComponent);
   }
 
   private initSections() {

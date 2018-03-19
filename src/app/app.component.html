@@ -18,14 +18,14 @@
 </section>
 
 <section>
-  <app-section sectionName="CAREERS">
+  <app-section sectionName="JOBS">
     <app-careers [careersData]="careersData$ | async"></app-careers>
   </app-section>
 </section>
 
 <section>
   <app-call-to-action [callToActionData]="callToActionData$ | async" class="text-alt background-alt"
-                      (tellUsClick)="openTellUs()"></app-call-to-action>
+                      (tellUsClick)="openCreateYourOwnJob()"></app-call-to-action>
 </section>
 
 <section>
@@ -33,3 +33,11 @@
     <app-contact [contactData]="contactData$ | async"></app-contact>
   </app-section>
 </section>
+
+<footer>
+  <div class="container">
+    <div fxLayout="row">
+      <div>Copyright © 2018 Smart Software - All rights reserved!</div>
+    </div>
+  </div>
+</footer>
