@@ -20,10 +20,12 @@ import { RECAPTCHA_SETTINGS, RecaptchaModule, RecaptchaSettings } from 'ng-recap
 import { RecaptchaFormsModule } from 'ng-recaptcha/forms';
 import { TellUsDialogComponent } from '../components/tell-us-dialog/tell-us-dialog.component';
 import { CreateYourOwnJobDialogComponent } from '../components/create-your-own-job-dialog/create-your-own-job-dialog.component';
+import { JobApplicationDialogComponent } from '../components/job-application-dialog/job-application-dialog.component';
 
 const DIALOGS = [
   TellUsDialogComponent,
-  CreateYourOwnJobDialogComponent
+  CreateYourOwnJobDialogComponent,
+  JobApplicationDialogComponent
 ];
 
 const COMPONENTS = [

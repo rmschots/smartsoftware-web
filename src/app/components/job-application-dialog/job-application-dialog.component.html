@@ -1,0 +1,108 @@
+<h2 mat-dialog-title>Job Details</h2>
+<mat-dialog-content fxLayout="column" fxLayoutGap="8px">
+  <mat-horizontal-stepper [linear]="true" #stepper="matHorizontalStepper">
+    <mat-step [editable]="!(formCompleted$ | async)">
+      <form>
+
+        <ng-template matStepLabel>Job Details</ng-template>
+        <div>
+          {{ data.job.description }}
+        </div>
+        <div class="flex-center">
+          <button mat-button matStepperNext>Apply Now!</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [editable]="!(formCompleted$ | async)" [stepControl]="tellUsFormGroup.controls['contactInfo']">
+      <form [formGroup]="tellUsFormGroup.controls['contactInfo']">
+
+        <ng-template matStepLabel>Contact info</ng-template>
+        <mat-form-field>
+          <input matInput type="text" placeholder="Name" name="firstname" formControlName="name" required>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput type="email" placeholder="Email" name="email" formControlName="email" required>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput type="tel" placeholder="Phone" name="phone" formControlName="phone" required>
+        </mat-form-field>
+        <div class="flex-center">
+          <button mat-button matStepperNext [disabled]="!tellUsFormGroup.controls['contactInfo'].valid">Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [editable]="!(formCompleted$ | async)" [stepControl]="tellUsFormGroup.controls['projectInfo']">
+      <form [formGroup]="tellUsFormGroup.controls['projectInfo']">
+        <ng-template matStepLabel>Add your CV</ng-template>
+        <mat-form-field>
+          <textarea matInput name="content" rows="10" placeholder="Paste the content of your CV here..."
+                    [formControlName]="'content'" required></textarea>
+        </mat-form-field>
+        <div class="flex-center">
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext [disabled]="!tellUsFormGroup.controls['projectInfo'].valid">Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [editable]="!(formCompleted$ | async)" [stepControl]="completionFormGroup">
+      <form [formGroup]="tellUsFormGroup" (ngSubmit)="onSubmit()">
+        <ng-template matStepLabel>Confirmation</ng-template>
+        <div class="flex-center">
+          <re-captcha formControlName="recaptcha" required></re-captcha>
+        </div>
+        <div class="flex-center">
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button type="submit"
+                  [disabled]="!tellUsFormGroup.valid || (formsubmitting$ | async)">
+            Confirm and send
+          </button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step #doneStep>
+      <ng-template matStepLabel>Done</ng-template>
+      <p class="small">Successfully submitted your message. We will reply as soon as possible.</p>
+      <div class="flex-center">
+        <button mat-raised-button color="primary" (click)="doneClicked()">
+          Close
+        </button>
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>
+</mat-dialog-content>
+
+<!--<div class="container">-->
+<!--<form fxLayout="column" [formGroup]="tellUsFormGroup" id="submit-frm" class="sample-form"-->
+<!--(ngSubmit)="onSubmit()" *ngIf="!(formSubmitted$ | async); else submitted">-->
+<!--<div>-->
+<!--<mat-form-field>-->
+<!--<textarea matInput name="body" rows="10" placeholder="Tell us about your job..."-->
+<!--formControlName="content" required></textarea>-->
+<!--</mat-form-field>-->
+<!--</div>-->
+<!--<div fxLayout="row" fxLayoutGap="30px" fxLayoutAlign="stretch center">-->
+<!--<div fxFlex="25">-->
+<!--<mat-form-field>-->
+<!--<input matInput type="text" placeholder="Name" name="firstname" formControlName="name" required>-->
+<!--</mat-form-field>-->
+<!--</div>-->
+<!--<div fxFlex="25">-->
+<!--<mat-form-field>-->
+<!--<input matInput type="email" placeholder="Email" name="email" formControlName="email" required>-->
+<!--</mat-form-field>-->
+<!--</div>-->
+<!--<div fxFlex="30">-->
+<!--<re-captcha formControlName="recaptcha" required></re-captcha>-->
+<!--</div>-->
+<!--<div fxFlex="20">-->
+<!--<button mat-raised-button color="primary" type="submit"-->
+<!--[disabled]="!tellUsFormGroup.valid || (formsubmitting$ | async)">-->
+<!--Apply now-->
+<!--</button>-->
+<!--</div>-->
+<!--</div>-->
+<!--</form>-->
+<!--</div>-->
+<!--<ng-template #submitted>-->
+<!--Tell us form has been submitted. We will reply asap.-->
+<!--</ng-template>-->

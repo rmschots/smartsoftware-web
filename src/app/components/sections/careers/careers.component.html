@@ -22,10 +22,18 @@
       <div class="jobs app-foreground-sub">
         <div class="job wow animated fadeInUp" *ngFor="let job of careersData.jobs">
           <h4 class="heading">{{ job.title }}, <span class="light">{{ job.location }}</span></h4>
-          <div class="date">
-            <mat-icon>event</mat-icon>
-            <span>{{ job.date | date: 'dd/MM/yyyy' }}</span>
+          <div fxLayout="col">
+            <div class="date" fxFlex="50">
+              <mat-icon>event</mat-icon>
+              <span>{{ job.date | date: 'dd/MM/yyyy' }}</span>
+            </div>
+            <div class="details" fxFlex="50">
+              <button mat-raised-button color="primary" class="mat-elevation-z2" (click)="clickJobDetails(job)">
+                Job Details
+              </button>
+            </div>
           </div>
+
         </div>
       </div>
     </div>

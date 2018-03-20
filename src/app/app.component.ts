@@ -5,13 +5,14 @@ import { NgwWowService } from 'ngx-wow';
 import { DOCUMENT } from '@angular/common';
 import { Observable } from 'rxjs/Observable';
 import { AngularFirestore, DocumentChangeAction } from 'angularfire2/firestore';
-import { AfsJobsSection } from './shared/models/afs-jobs-section';
+import { AfsJobsSection, Job } from './shared/models/afs-jobs-section';
 import { AfsSection } from './shared/models/afs-section';
 import { AfsContactSection } from './shared/models/afs-contact-section';
 import { MatDialog } from '@angular/material';
 import { TellUsDialogComponent } from './components/tell-us-dialog/tell-us-dialog.component';
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { CreateYourOwnJobDialogComponent } from './components/create-your-own-job-dialog/create-your-own-job-dialog.component';
+import { JobApplicationDialogComponent } from './components/job-application-dialog/job-application-dialog.component';
 
 @Component({
   selector: 'app-root',
@@ -83,6 +84,14 @@ export class AppComponent implements OnInit {
 
   openCreateYourOwnJob() {
     this._dialog.open(CreateYourOwnJobDialogComponent);
+  }
+
+  openJobDetails(_job:Job) {
+    this._dialog.open(JobApplicationDialogComponent, {
+      data: {
+        job: _job
+      }
+    });
   }
 
   private initSections() {

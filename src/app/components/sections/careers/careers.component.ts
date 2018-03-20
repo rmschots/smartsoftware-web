@@ -1,5 +1,5 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { AfsJobsSection } from '../../../shared/models/afs-jobs-section';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { AfsJobsSection, Job } from '../../../shared/models/afs-jobs-section';
 
 @Component({
   selector: 'app-careers',
@@ -8,5 +8,11 @@ import { AfsJobsSection } from '../../../shared/models/afs-jobs-section';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CareersComponent {
+  @Output() jobDetailsClick: EventEmitter<Job> = new EventEmitter<Job>();
   @Input() careersData: AfsJobsSection;
+
+
+  clickJobDetails(job:Job) {
+    this.jobDetailsClick.next(job);
+  }
 }

@@ -1,10 +1,13 @@
 import { AfsSection } from './afs-section';
 
+export interface Job {
+  date: Date;
+  location: string;
+  title: string;
+  description: string,
+}
+
 export interface AfsJobsSection extends AfsSection {
-  jobs: {
-    date: Date;
-    location: string;
-    title: string;
-  }[];
+  jobs: Job[];
   jobsTitle: string;
 }
