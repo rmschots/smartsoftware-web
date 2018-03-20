@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { AfsContactSection } from '../../../shared/models/afs-contact-section';
 import { AfsContactMessage } from '../../../shared/models/afs-contact-message';
@@ -38,7 +38,8 @@ export class ContactComponent extends Unsubscribable {
         subject: rawValue.subject,
         name: rawValue.name,
         email: rawValue.email,
-        message: rawValue.content
+        message: rawValue.content,
+        recaptcha: rawValue.recaptcha
       };
       fromPromise(
         this._afs.doc<AfsContactMessage>(`contactMessages/${this._afs.createId()}`)

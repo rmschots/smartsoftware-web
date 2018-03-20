@@ -19,7 +19,6 @@ export class TellUsDialogComponent extends Unsubscribable {
 
   completionFormGroup: FormGroup;
   tellUsFormGroup: FormGroup;
-  formSubmitted$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   formsubmitting$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   formCompleted$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
@@ -56,7 +55,8 @@ export class TellUsDialogComponent extends Unsubscribable {
         subject: 'Tell us about your job',
         name: `${rawValue.contactInfo.name} (${rawValue.contactInfo.phone})`,
         email: rawValue.contactInfo.email,
-        message: rawValue.projectInfo.content
+        message: rawValue.projectInfo.content,
+        recaptcha: rawValue.recaptcha
       };
       fromPromise(
         this._afs.doc<AfsContactMessage>(`contactMessages/${this._afs.createId()}`)

@@ -3,4 +3,6 @@ export interface ContactMessage {
   message: string;
   name: string;
   subject: string;
+  recaptcha: string;
+  valid: boolean;
 }

@@ -11,7 +11,7 @@ import { AfsContactSection } from './shared/models/afs-contact-section';
 import { MatDialog } from '@angular/material';
 import { TellUsDialogComponent } from './components/tell-us-dialog/tell-us-dialog.component';
 import { OverlayContainer } from '@angular/cdk/overlay';
-import { CreateYourOwnJobDialogComponent } from "./components/create-your-own-job-dialog/create-your-own-job-dialog.component";
+import { CreateYourOwnJobDialogComponent } from './components/create-your-own-job-dialog/create-your-own-job-dialog.component';
 
 @Component({
   selector: 'app-root',

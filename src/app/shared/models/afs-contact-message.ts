@@ -3,4 +3,5 @@ export interface AfsContactMessage {
   message: string;
   name: string;
   subject: string;
+  recaptcha: string;
 }

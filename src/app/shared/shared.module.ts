@@ -19,7 +19,7 @@ import { LoadingSpinnerComponent } from './components/loading-spinner/loading-sp
 import { RECAPTCHA_SETTINGS, RecaptchaModule, RecaptchaSettings } from 'ng-recaptcha';
 import { RecaptchaFormsModule } from 'ng-recaptcha/forms';
 import { TellUsDialogComponent } from '../components/tell-us-dialog/tell-us-dialog.component';
-import { CreateYourOwnJobDialogComponent } from "../components/create-your-own-job-dialog/create-your-own-job-dialog.component";
+import { CreateYourOwnJobDialogComponent } from '../components/create-your-own-job-dialog/create-your-own-job-dialog.component';
 
 const DIALOGS = [
   TellUsDialogComponent,

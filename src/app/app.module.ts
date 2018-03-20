@@ -19,7 +19,8 @@ import { AngularFireModule } from 'angularfire2';
 import { environment } from '../environments/environment';
 import { RecaptchaModule } from 'ng-recaptcha';
 import { MatDialogModule } from '@angular/material';
-import { OverlayContainer, OverlayModule } from '@angular/cdk/overlay';
+import { OverlayModule } from '@angular/cdk/overlay';
+import { FooterComponent } from './components/footer/footer.component';
 
 const SINGLETON_MODULES = [
   BrowserModule,
@@ -44,7 +45,8 @@ const CONTAINERS = [
   CareersComponent,
   ContactComponent,
   CallToActionComponent,
-  SloganComponent
+  SloganComponent,
+  FooterComponent
 ];
 
 @NgModule({
