@@ -13,7 +13,7 @@ export class SectionComponent extends Unsubscribable implements AfterViewInit {
 
   @HostBinding('attr.id') @Input() sectionName: string;
 
-  constructor(private element: ElementRef, private _sectionService: SectionService) {
+  constructor(private _element: ElementRef, private _sectionService: SectionService) {
     super();
   }
 
@@ -30,7 +30,7 @@ export class SectionComponent extends Unsubscribable implements AfterViewInit {
   }
 
   private notifyChangePosition() {
-    this._sectionService.addSection(this.sectionName, this.element.nativeElement.offsetTop);
+    this._sectionService.addSection(this.sectionName, this._element.nativeElement.offsetTop);
   }
 
 }

@@ -33,14 +33,14 @@ export class AppComponent implements OnInit {
   callToActionData$: Observable<AfsSection>;
   contactData$: Observable<AfsSection>;
 
-  constructor(private el: ElementRef,
+  constructor(private _el: ElementRef,
               private _sectionService: SectionService,
               private _wowService: NgwWowService,
               private _pageScrollService: PageScrollService,
               private _afs: AngularFirestore,
               private _dialog: MatDialog,
               private _overlayContainer: OverlayContainer,
-              @Inject(DOCUMENT) private document: any) {
+              @Inject(DOCUMENT) private _document: any) {
     PageScrollConfig.defaultScrollOffset = 104;
     PageScrollConfig.defaultEasingLogic = {
       ease: (t: number, b: number, c: number, d: number): number => {
@@ -86,10 +86,10 @@ export class AppComponent implements OnInit {
     this._dialog.open(CreateYourOwnJobDialogComponent);
   }
 
-  openJobDetails(_job:Job) {
+  openJobDetails(job: Job) {
     this._dialog.open(JobApplicationDialogComponent, {
       data: {
-        job: _job
+        job: job
       }
     });
   }

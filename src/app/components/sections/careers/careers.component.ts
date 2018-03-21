@@ -12,7 +12,7 @@ export class CareersComponent {
   @Input() careersData: AfsJobsSection;
 
 
-  clickJobDetails(job:Job) {
+  clickJobDetails(job: Job) {
     this.jobDetailsClick.next(job);
   }
 }

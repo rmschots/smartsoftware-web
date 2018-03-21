@@ -4,7 +4,7 @@ export interface Job {
   date: Date;
   location: string;
   title: string;
-  description: string,
+  description: string;
 }
 
 export interface AfsJobsSection extends AfsSection {
