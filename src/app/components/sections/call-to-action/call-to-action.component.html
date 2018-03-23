@@ -1,5 +1,5 @@
 <div class="container">
-  <div fxLayout="col" *ngIf="callToActionData; else loading">
+  <div fxLayout fxLayout.lt-lg="column" *ngIf="callToActionData; else loading">
     <div fxFlex="70" class="text-left text-center-mobile wow animated fadeInUp">
       <h2 class="heading top-fit">{{ callToActionData.title }}</h2>
       <h4 class="subheading no-margin">{{ callToActionData.subTitle }}</h4>

@@ -1,10 +1,12 @@
-<header id="top">
+<header id="top" [ngClass]="'header-fullscreen'" [ngClass.lt-lg]="'header-fit-content'">
   <app-header [headerData]="headerData$ | async" (tellUsClick)="openTellUs()"></app-header>
 </header>
 <nav>
-  <app-navbar class="app-nav-background app-nav-foreground" (themeChange)="themeChanged($event)"></app-navbar>
-  <app-navbar class="navbar-sticky mat-elevation-z6 app-nav-background app-nav-foreground"
-              *ngIf="isNavbarSticky$ | async" (themeChange)="themeChanged($event)"></app-navbar>
+  <app-navbar *ngIf="media.isActive('gt-md')" class="app-nav-background app-nav-foreground"
+              (themeChange)="themeChanged($event)"></app-navbar>
+  <app-navbar *ngIf="media.isActive('gt-md') && (isNavbarSticky$ | async)"
+              class="navbar-sticky mat-elevation-z6 app-nav-background app-nav-foreground"
+              (themeChange)="themeChanged($event)"></app-navbar>
 </nav>
 
 <section>

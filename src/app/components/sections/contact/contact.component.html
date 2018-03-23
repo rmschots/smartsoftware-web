@@ -1,5 +1,5 @@
 <div class="container">
-  <div fxLayout="row" *ngIf="contactData; else loading">
+  <div fxLayout="row" fxLayout.lt-lg="column" *ngIf="contactData; else loading">
     <div fxFlex="50" class="text-left text-center-mobile contact-details">
       <h3 class="heading no-margin wow animated fadeInUp">{{ contactData.title }}</h3>
       <h4 class="subheading muted no-margin wow animated fadeInUp">{{ contactData.subTitle }}</h4>
@@ -43,7 +43,7 @@
                     formControlName="content" required></textarea>
         </mat-form-field>
       </div>
-      <div class="row field-padding form-bottom">
+      <div class="row field-padding form-bottom" fxLayout="row" fxLayout.lt-lg="column">
         <re-captcha formControlName="recaptcha" required></re-captcha>
         <button mat-raised-button color="primary" type="submit"
                 [disabled]="!contactFormGroup.valid || (formsubmitting$ | async)">

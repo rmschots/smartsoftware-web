@@ -1,7 +1,14 @@
 @import '../../../variables';
 
-#canvas-container {
+.header-fit-content {
+  height: auto;
+}
+
+.header-full-screen {
   height: 100%;
+}
+
+#canvas-container {
   overflow: hidden;
   position: absolute;
   width: 100%;

@@ -13,6 +13,8 @@ import { TellUsDialogComponent } from './components/tell-us-dialog/tell-us-dialo
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { CreateYourOwnJobDialogComponent } from './components/create-your-own-job-dialog/create-your-own-job-dialog.component';
 import { JobApplicationDialogComponent } from './components/job-application-dialog/job-application-dialog.component';
+import { MediaChange, ObservableMedia } from '@angular/flex-layout';
+import { Unsubscribable } from './shared/util/unsubscribable';
 
 @Component({
   selector: 'app-root',
@@ -20,9 +22,10 @@ import { JobApplicationDialogComponent } from './components/job-application-dial
   styleUrls: ['./app.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AppComponent implements OnInit {
+export class AppComponent extends Unsubscribable implements OnInit {
 
-  @HostBinding('class') componentCssClass = '';
+  @HostBinding('class.dark-theme') componentCssClass = false;
+  @HostBinding('class.text-center') textCenterClass = false;
 
   sectionsChange$: Observable<DocumentChangeAction[]>;
 
@@ -33,7 +36,8 @@ export class AppComponent implements OnInit {
   callToActionData$: Observable<AfsSection>;
   contactData$: Observable<AfsSection>;
 
-  constructor(private _el: ElementRef,
+  constructor(public media: ObservableMedia,
+              private _el: ElementRef,
               private _sectionService: SectionService,
               private _wowService: NgwWowService,
               private _pageScrollService: PageScrollService,
@@ -41,7 +45,16 @@ export class AppComponent implements OnInit {
               private _dialog: MatDialog,
               private _overlayContainer: OverlayContainer,
               @Inject(DOCUMENT) private _document: any) {
-    PageScrollConfig.defaultScrollOffset = 104;
+    super();
+    media.asObservable().takeUntil(this.ngUnsubscribe$).subscribe((mediaChange: MediaChange) => {
+      if (media.isActive('lt-lg')) {
+        PageScrollConfig.defaultScrollOffset = 0;
+        this.textCenterClass = true;
+      } else {
+        PageScrollConfig.defaultScrollOffset = 104;
+        this.textCenterClass = false;
+      }
+    });
     PageScrollConfig.defaultEasingLogic = {
       ease: (t: number, b: number, c: number, d: number): number => {
         // easeInOutExpo easing
@@ -57,10 +70,10 @@ export class AppComponent implements OnInit {
 
   themeChanged(isDark: boolean) {
     if (isDark) {
-      this.componentCssClass = 'dark-theme';
+      this.componentCssClass = true;
       this._overlayContainer.getContainerElement().classList.add('dark-theme');
     } else {
-      this.componentCssClass = '';
+      this.componentCssClass = false;
       this._overlayContainer.getContainerElement().classList.remove('dark-theme');
     }
   }

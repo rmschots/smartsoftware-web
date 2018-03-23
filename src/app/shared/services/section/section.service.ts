@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
+import { ObservableMedia } from '@angular/flex-layout';
 
 @Injectable()
 export class SectionService {
@@ -9,6 +10,9 @@ export class SectionService {
   private _sectionNames$: BehaviorSubject<string[]> = new BehaviorSubject<string[]>([]);
 
   private _sectionPositionMap: Map<string, number> = new Map<string, number>();
+
+  constructor(private _media: ObservableMedia) {
+  }
 
   addSection(sectionName: string, position: number) {
     this._sectionPositionMap.set(sectionName, position);
@@ -45,7 +49,8 @@ export class SectionService {
     //if the page has already been scrolled find the current name
     if (window.scrollY > 0) {
       const topSectionName = currentSectionNames.find(sectionName => {
-        return (this._sectionPositionMap.get(sectionName) - window.scrollY - 104 - 1) < 0;
+        const offset = this._media.isActive('lt-lg') ? 0 : -104 - 1;
+        return (this._sectionPositionMap.get(sectionName) - window.scrollY + offset) < 0;
       });
 
       this._isSticky$.next(!!topSectionName);

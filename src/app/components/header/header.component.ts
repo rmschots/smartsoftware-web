@@ -1,4 +1,15 @@
-import { AfterViewInit, Component, ElementRef, EventEmitter, HostListener, Input, Output, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  EventEmitter,
+  HostListener,
+  Input,
+  OnChanges,
+  Output,
+  SimpleChanges,
+  ViewChild
+} from '@angular/core';
 import { AfsSection } from '../../shared/models/afs-section';
 import { SectionService } from '../../shared/services/section/section.service';
 
@@ -7,14 +18,14 @@ import { SectionService } from '../../shared/services/section/section.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements AfterViewInit {
+export class HeaderComponent implements AfterViewInit, OnChanges {
   @Output() tellUsClick: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Input() headerData: AfsSection;
   @ViewChild('canvasContainer') elementRef: ElementRef;
-
   private pauseRendering = false;
 
   private container: HTMLElement;
+
   private scene;
   private camera;
   private renderer;
@@ -34,16 +45,16 @@ export class HeaderComponent implements AfterViewInit {
   private amtX = 50;
   private amtY = 50;
   private sep = 100;
-
   private particles = [];
 
-  constructor(private _sectionService: SectionService) {
+  constructor(private _sectionService: SectionService,
+              private _elementRef: ElementRef) {
   }
 
   ngAfterViewInit(): void {
     this.container = this.elementRef.nativeElement;
 
-    this.height = window.innerHeight;
+    this.height = this._elementRef.nativeElement.getBoundingClientRect().height;
     this.winHalfY = this.height / 2;
     this.width = window.innerWidth;
     this.winHalfX = this.width / 2;
@@ -66,6 +77,7 @@ export class HeaderComponent implements AfterViewInit {
   clickTellUs() {
     this.tellUsClick.next(true);
   }
+
 
   rendererer() {
     this.camera = new THREE.PerspectiveCamera(this.fieldOfView, this.aspectRatio, this.nearPlane, this.farPlane);
@@ -128,6 +140,12 @@ export class HeaderComponent implements AfterViewInit {
     this.count += 0.1;
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    if (this.camera) {
+      setTimeout(() => this.onWindowResize());
+    }
+  }
+
   @HostListener('document:mousemove', ['$event'])
   onDocumentMouseMove(e) {
     this.mouseX = e.clientX - this.winHalfX;
@@ -154,7 +172,7 @@ export class HeaderComponent implements AfterViewInit {
 
   @HostListener('window:resize', ['$event'])
   onWindowResize() {
-    this.height = window.innerHeight;
+    this.height = this._elementRef.nativeElement.getBoundingClientRect().height;
     this.winHalfY = this.height / 2;
     this.width = window.innerWidth;
     this.winHalfX = this.width / 2;

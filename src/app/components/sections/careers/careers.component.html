@@ -1,11 +1,11 @@
 <div class="container">
-  <div fxLayout="col" *ngIf="careersData; else loading">
+  <div fxLayout="col" fxLayout.lt-lg="column" *ngIf="careersData; else loading">
     <div fxFlex="50">
-      <div fxLayout class="careers">
-        <div fxFlex="30">
+      <div fxLayout fxLayoutAlign="center center" fxLayoutGap="10%" class="careers">
+        <div>
           <img src="assets/img/team-widget.jpg" alt="" class="pic">
         </div>
-        <div fxFlex="60" fxFlexOffset="10" class="careers-title">
+        <div class="careers-title">
           <h2 class="heading wow animated fadeInUp">{{ careersData.title }}</h2>
           <h4 class="subheading muted wow animated fadeInUp">{{ careersData.subTitle }}</h4>
         </div>
@@ -22,12 +22,12 @@
       <div class="jobs app-foreground-sub">
         <div class="job wow animated fadeInUp" *ngFor="let job of careersData.jobs">
           <h4 class="heading">{{ job.title }}, <span class="light">{{ job.location }}</span></h4>
-          <div fxLayout="col">
-            <div class="date" fxFlex="50">
+          <div fxLayout="row" fxLayoutAlign="space-between" fxLayoutAlign.lt-lg="center space-evenly">
+            <div class="date">
               <mat-icon>event</mat-icon>
               <span>{{ job.date | date: 'dd/MM/yyyy' }}</span>
             </div>
-            <div class="details" fxFlex="50">
+            <div class="details">
               <button mat-raised-button color="primary" class="mat-elevation-z2" (click)="clickJobDetails(job)">
                 Job Details
               </button>

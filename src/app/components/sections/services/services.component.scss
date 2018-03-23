@@ -2,6 +2,11 @@
   display: block;
 }
 
+.book-wrapper {
+  min-height: 400px;
+  max-width: 600px;
+}
+
 .book-preview {
   display: inline-block;
   height: 100%;
@@ -9,6 +14,8 @@
   max-width: 400px;
   position: relative;
   width: 80%;
+  min-height: 400px;
+  margin: auto;
 
   img {
     height: 100%;
@@ -32,6 +39,7 @@
     position: relative;
     vertical-align: middle;
     width: 80%;
+    height: 100%;
   }
 
   .tablet-background {
@@ -42,5 +50,9 @@
     position: absolute;
     top: 5%;
     width: 90%;
+  }
+
+  .tablet-screen {
+    height: auto;
   }
 }

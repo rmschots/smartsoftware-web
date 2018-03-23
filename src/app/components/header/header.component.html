@@ -1,14 +1,14 @@
-<div #canvasContainer id="canvas-container" class="app-header-background">
+<div #canvasContainer id="canvas-container" [ngClass.lt-lg]="'header-fit-content'" [ngClass]="'header-full-screen'" class="app-header-background">
 </div>
-<div class="container header-container" fxLayout>
-  <div fxFlex="50">
+<div class="container header-container" fxLayout="row" fxLayout.lt-lg="column" fxLayoutGap="16px">
+  <div fxFlex="50" fxFlex.lt-lg="0 1 auto">
     <img id="header-logo" src="assets/img/logo-stacked.png" alt="Smart Sofware logo">
   </div>
-  <div fxFlex="50" *ngIf="headerData; else loading" class="app-header-foreground">
+  <div fxFlex="50" fxFlex.lt-lg="1 0 auto" *ngIf="headerData; else loading" class="app-header-foreground">
     <h2 class="heading">{{ headerData.title }}</h2>
     <h4 class="subheading">{{ headerData.subTitle }}</h4>
     <p>{{ headerData.content1 }}</p>
-    <div fxLayout fxLayoutAlign="center" fxLayoutGap="32px">
+    <div fxLayout="row" fxLayout.lt-lg="column" fxLayoutAlign="center" fxLayoutGap="32px">
       <button mat-button pageScroll pageScrollTarget="#SERVICES" class="mat-elevation-z2">
         {{ headerData.action1 }}
       </button>

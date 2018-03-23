@@ -9,8 +9,15 @@ h2 {
 }
 
 header {
-  height: 100%;
   width: 100%;
+}
+
+.header-fullscreen {
+  height: 100%;
+}
+
+.header-fit-content {
+  height: auto;
 }
 
 .navbar-sticky {
