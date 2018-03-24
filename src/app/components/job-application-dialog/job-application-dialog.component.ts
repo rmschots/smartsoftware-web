@@ -26,7 +26,7 @@ export class JobApplicationDialogComponent extends Unsubscribable {
   constructor(private _fb: FormBuilder,
               private _afs: AngularFirestore,
               private _dialogRef: MatDialogRef<JobApplicationDialogComponent>,
-              @Inject(MAT_DIALOG_DATA) private _data: any) {
+              @Inject(MAT_DIALOG_DATA) public data: any) {
     super();
     this.tellUsFormGroup = _fb.group({
       contactInfo: _fb.group({
@@ -55,7 +55,7 @@ export class JobApplicationDialogComponent extends Unsubscribable {
       const rawValue = this.tellUsFormGroup.getRawValue();
       const contactMessage = {
         subject: 'Job Application',
-        job: this._data.job,
+        job: this.data.job,
         name: `${rawValue.contactInfo.name} (${rawValue.contactInfo.phone})`,
         email: rawValue.contactInfo.email,
         message: rawValue.projectInfo.content,
