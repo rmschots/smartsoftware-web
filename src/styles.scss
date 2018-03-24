@@ -91,6 +91,43 @@ section .container {
 button {
   font-family: $app-font-bold !important;
   font-size: 18px !important;
+  overflow: hidden;
+}
+
+button.shine:after {
+  animation: shine 1.5s infinite linear alternate;
+  content: "";
+  position: absolute;
+  top: -310%;
+  left: -1510%;
+  width: 200%;
+  height: 200%;
+  opacity: 0;
+  transform: rotate(40deg);
+
+  background: rgba(255, 255, 255, 0.13);
+  background: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0.13) 0%,
+      rgba(255, 255, 255, 0.13) 1%,
+      rgba(255, 255, 255, 0.5) 2%,
+      rgba(255, 255, 255, 0.0) 100%
+  );
+}
+
+button.shine:active:after {
+  opacity: 0;
+}
+
+@keyframes shine{
+  to {
+    opacity: 1;
+    top: -100%;
+    left: 100%;
+    transition-property: left, top, opacity;
+    transition-duration: 0.7s, 0.7s, 0.15s;
+    transition-timing-function: ease;
+  }
 }
 
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
