@@ -8,9 +8,9 @@
   z-index: 2;
 
   > .container {
+    align-items: center;
     display: flex;
     justify-content: space-around;
-    align-items: center;
   }
 }
 
@@ -35,10 +35,6 @@ ul {
 
 .active-section {
   color: #1c92d2;
-}
-
-.nav-links {
-  float: right;
 }
 
 .style-toggle {

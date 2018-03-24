@@ -21,6 +21,7 @@ import { RecaptchaModule } from 'ng-recaptcha';
 import { MatDialogModule } from '@angular/material';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { FooterComponent } from './components/footer/footer.component';
+import { SidenavComponent } from './components/sidenav/sidenav.component';
 
 const SINGLETON_MODULES = [
   BrowserModule,
@@ -46,7 +47,8 @@ const CONTAINERS = [
   ContactComponent,
   CallToActionComponent,
   SloganComponent,
-  FooterComponent
+  FooterComponent,
+  SidenavComponent
 ];
 
 @NgModule({

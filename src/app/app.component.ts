@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, ElementRef, HostBinding, HostListener, Inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, HostBinding, HostListener, Inject, OnInit, ViewChild } from '@angular/core';
 import { PageScrollConfig, PageScrollService } from 'ngx-page-scroll';
 import { SectionService } from './shared/services/section/section.service';
 import { NgwWowService } from 'ngx-wow';
@@ -8,7 +8,7 @@ import { AngularFirestore, DocumentChangeAction } from 'angularfire2/firestore';
 import { AfsJobsSection, Job } from './shared/models/afs-jobs-section';
 import { AfsSection } from './shared/models/afs-section';
 import { AfsContactSection } from './shared/models/afs-contact-section';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatSidenav } from '@angular/material';
 import { TellUsDialogComponent } from './components/tell-us-dialog/tell-us-dialog.component';
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { CreateYourOwnJobDialogComponent } from './components/create-your-own-job-dialog/create-your-own-job-dialog.component';
@@ -24,8 +24,9 @@ import { Unsubscribable } from './shared/util/unsubscribable';
 })
 export class AppComponent extends Unsubscribable implements OnInit {
 
-  @HostBinding('class.dark-theme') componentCssClass = false;
+  @HostBinding('class.dark-theme') isDarkTheme = false;
   @HostBinding('class.text-center') textCenterClass = false;
+  @ViewChild(MatSidenav) sidenav;
 
   sectionsChange$: Observable<DocumentChangeAction[]>;
 
@@ -68,13 +69,13 @@ export class AppComponent extends Unsubscribable implements OnInit {
     this.initSections();
   }
 
-  themeChanged(isDark: boolean) {
-    if (isDark) {
-      this.componentCssClass = true;
-      this._overlayContainer.getContainerElement().classList.add('dark-theme');
-    } else {
-      this.componentCssClass = false;
+  themeChanged() {
+    if (this.isDarkTheme) {
+      this.isDarkTheme = false;
       this._overlayContainer.getContainerElement().classList.remove('dark-theme');
+    } else {
+      this.isDarkTheme = true;
+      this._overlayContainer.getContainerElement().classList.add('dark-theme');
     }
   }
 
@@ -105,6 +106,10 @@ export class AppComponent extends Unsubscribable implements OnInit {
         job: job
       }
     });
+  }
+
+  openSidenav() {
+    this.sidenav.open();
   }
 
   private initSections() {

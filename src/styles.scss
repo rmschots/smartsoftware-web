@@ -45,6 +45,18 @@ body {
   }
 }
 
+.navbar-brand {
+  cursor: pointer;
+}
+
+.nav-links {
+  ul {
+    list-style: none;
+    margin: 0;
+    padding-left: 0;
+  }
+}
+
 .heading {
   font-family: $app-font-bold;
   line-height: 38px;

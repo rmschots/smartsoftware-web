@@ -49,7 +49,7 @@ export class SectionService {
     //if the page has already been scrolled find the current name
     if (window.scrollY > 0) {
       const topSectionName = currentSectionNames.find(sectionName => {
-        const offset = this._media.isActive('lt-lg') ? 0 : -104 - 1;
+        const offset = this._media.isActive('lt-lg') ? -1 : -104 - 1;
         return (this._sectionPositionMap.get(sectionName) - window.scrollY + offset) < 0;
       });
 

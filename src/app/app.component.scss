@@ -13,7 +13,7 @@ header {
 }
 
 .header-fullscreen {
-  height: 100%;
+  height: 100vh;
 }
 
 .header-fit-content {
@@ -22,4 +22,15 @@ header {
 
 .navbar-sticky {
   position: fixed;
+}
+
+.menu-button-overlay {
+  left: 16px;
+  position: fixed;
+  top: 16px;
+  z-index: 9999;
+}
+
+mat-sidenav {
+  width: 300px;
 }

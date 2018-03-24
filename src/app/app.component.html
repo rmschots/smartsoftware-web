@@ -1,41 +1,53 @@
-<header id="top" [ngClass]="'header-fullscreen'" [ngClass.lt-lg]="'header-fit-content'">
-  <app-header [headerData]="headerData$ | async" (tellUsClick)="openTellUs()"></app-header>
-</header>
-<nav>
-  <app-navbar *ngIf="media.isActive('gt-md')" class="app-nav-background app-nav-foreground"
-              (themeChange)="themeChanged($event)"></app-navbar>
-  <app-navbar *ngIf="media.isActive('gt-md') && (isNavbarSticky$ | async)"
-              class="navbar-sticky mat-elevation-z6 app-nav-background app-nav-foreground"
-              (themeChange)="themeChanged($event)"></app-navbar>
-</nav>
+<mat-sidenav-container>
+  <mat-sidenav role="directory" [fixedInViewport]="true">
+    <app-sidenav (themeChange)="themeChanged()"></app-sidenav>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div class="menu-button-overlay" *ngIf="media.isActive('lt-lg')">
+      <button mat-fab (click)="openSidenav()">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </div>
+    <header id="top" [ngClass]="'header-fullscreen'" [ngClass.lt-lg]="'header-fit-content'">
+      <app-header [headerData]="headerData$ | async" (tellUsClick)="openTellUs()"></app-header>
+    </header>
+    <nav>
+      <app-navbar *ngIf="media.isActive('gt-md')" class="app-nav-background app-nav-foreground"
+                  (themeChange)="themeChanged()"></app-navbar>
+      <app-navbar *ngIf="media.isActive('gt-md') && (isNavbarSticky$ | async)"
+                  class="navbar-sticky mat-elevation-z6 app-nav-background app-nav-foreground"
+                  (themeChange)="themeChanged()"></app-navbar>
+    </nav>
 
-<section>
-  <app-section sectionName="SERVICES">
-    <app-services [servicesData]="servicesData$ | async"></app-services>
-  </app-section>
-</section>
+    <section>
+      <app-section sectionName="SERVICES">
+        <app-services [servicesData]="servicesData$ | async"></app-services>
+      </app-section>
+    </section>
 
-<section>
-  <app-slogan [sloganData]="sloganData$ | async" class="text-alt background-alt"></app-slogan>
-</section>
+    <section>
+      <app-slogan [sloganData]="sloganData$ | async" class="text-alt background-alt"></app-slogan>
+    </section>
 
-<section>
-  <app-section sectionName="JOBS">
-    <app-careers [careersData]="careersData$ | async" (jobDetailsClick)="openJobDetails($event)"></app-careers>
-  </app-section>
-</section>
+    <section>
+      <app-section sectionName="JOBS">
+        <app-careers [careersData]="careersData$ | async" (jobDetailsClick)="openJobDetails($event)"></app-careers>
+      </app-section>
+    </section>
 
-<section>
-  <app-call-to-action [callToActionData]="callToActionData$ | async" class="text-alt background-alt"
-                      (tellUsClick)="openCreateYourOwnJob()"></app-call-to-action>
-</section>
+    <section>
+      <app-call-to-action [callToActionData]="callToActionData$ | async" class="text-alt background-alt"
+                          (tellUsClick)="openCreateYourOwnJob()"></app-call-to-action>
+    </section>
 
-<section>
-  <app-section sectionName="CONTACT">
-    <app-contact [contactData]="contactData$ | async"></app-contact>
-  </app-section>
-</section>
+    <section>
+      <app-section sectionName="CONTACT">
+        <app-contact [contactData]="contactData$ | async"></app-contact>
+      </app-section>
+    </section>
 
-<footer>
-  <app-footer></app-footer>
-</footer>
+    <footer>
+      <app-footer></app-footer>
+    </footer>
+  </mat-sidenav-content>
+</mat-sidenav-container>
