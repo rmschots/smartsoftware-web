@@ -11,4 +11,9 @@ export interface AfsJobsSection extends AfsSection {
   jobs: Job[];
   jobsTitle: string;
   jobDetails: string;
+  reason: string;
+  reasons: {
+    title: string;
+    description: string;
+  }[];
 }
