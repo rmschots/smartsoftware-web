@@ -10,10 +10,13 @@
     <p>{{ headerData.content1 }}</p>
     <div fxLayout="row" fxLayout.lt-lg="column" fxLayoutAlign="center" fxLayoutGap="32px">
       <button mat-button pageScroll pageScrollTarget="#SERVICES" class="mat-elevation-z2">
-        {{ headerData.action1 }}
+        {{ headerData.services }}
+      </button>
+      <button mat-button pageScroll pageScrollTarget="#JOBS" class="mat-elevation-z2">
+        {{ headerData.jobs }}
       </button>
       <button mat-raised-button color="primary" class="mat-elevation-z2 shine" (click)="clickTellUs()">
-        {{ headerData.action2 }}
+        {{ headerData.tellUs }}
       </button>
     </div>
   </div>
