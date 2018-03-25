@@ -7,7 +7,7 @@ export interface AfsContactSection extends AfsSection {
     place: string;
   };
   reason: string;
-  reasons:{
+  reasons: {
     title: string;
     description: string;
   }[];

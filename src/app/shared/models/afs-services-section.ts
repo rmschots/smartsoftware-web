@@ -1,6 +1,7 @@
 import { AfsSection } from './afs-section';
+
 export interface AfsServicesSection extends AfsSection {
-  services:{
+  services: {
     service: string;
     description: string;
   }[];
