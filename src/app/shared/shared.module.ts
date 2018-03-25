@@ -6,6 +6,7 @@ import {
   MatButtonModule,
   MatButtonToggleModule,
   MatDialogModule,
+  MatExpansionModule,
   MatFormFieldModule,
   MatIconModule,
   MatInputModule,
@@ -55,7 +56,8 @@ const MATERIAL_MODULES = [
   MatButtonToggleModule,
   MatStepperModule,
   MatDialogModule,
-  MatSidenavModule
+  MatSidenavModule,
+  MatExpansionModule
 ];
 
 const MODULES = [
