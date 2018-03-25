@@ -8,4 +8,5 @@ export interface AfsContactSection extends AfsSection {
   };
   phone: string;
   email: string;
+  vat: string;
 }
