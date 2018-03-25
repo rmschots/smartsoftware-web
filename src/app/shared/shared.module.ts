@@ -5,12 +5,14 @@ import { SectionService } from './services/section/section.service';
 import {
   MatButtonModule,
   MatButtonToggleModule,
+  MatCardModule,
   MatDialogModule,
   MatExpansionModule,
   MatFormFieldModule,
   MatIconModule,
   MatInputModule,
-  MatProgressSpinnerModule, MatSidenavModule,
+  MatProgressSpinnerModule,
+  MatSidenavModule,
   MatStepperModule
 } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -57,7 +59,8 @@ const MATERIAL_MODULES = [
   MatStepperModule,
   MatDialogModule,
   MatSidenavModule,
-  MatExpansionModule
+  MatExpansionModule,
+  MatCardModule
 ];
 
 const MODULES = [

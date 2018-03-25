@@ -1,15 +1,17 @@
 <div class="container">
-  <div fxLayout="row" fxLayout.lt-lg="column" fxLayoutAlign="center center" *ngIf="servicesData; else loading">
+  <div fxLayout="column" fxLayout.lt-lg="column" fxLayoutAlign="center space-between" fxLayoutGap="32px" *ngIf="servicesData; else loading">
     <div>
       <h2 class="heading wow animated fadeInUp">{{ servicesData.title }}</h2>
       <h4 class="subheading wow animated fadeInUp">{{ servicesData.subTitle }}</h4>
       <p class="small muted wow animated fadeInUp">{{ servicesData.content1 }}</p>
     </div>
-    <div class="job wow animated fadeInUp" *ngFor="let service of servicesData.services">
-      <h4 class="heading">{{ service.service }}</h4>
-      <div fxLayout="row" fxLayoutAlign="space-between" fxLayoutAlign.lt-lg="center space-evenly">
-        <p class="small muted wow animated fadeInUp">{{ service.description }}</p>
-      </div>
+    <div fxLayout="row" fxLayout.lt-lg="column" fxLayoutAlign="center" fxLayoutGap="16px">
+      <mat-card fxLayout="column" fxFlex="33" *ngFor="let service of servicesData.services">
+        <mat-card-title class="heading job wow animated fadeInUp">{{ service.service }}</mat-card-title>
+        <mat-card-content>
+          <p class="small muted wow animated fadeInUp">{{ service.description }}</p>
+        </mat-card-content>
+      </mat-card>
     </div>
   </div>
 </div>
