@@ -10,8 +10,8 @@ import {
   SimpleChanges,
   ViewChild
 } from '@angular/core';
-import { AfsSection } from '../../shared/models/afs-section';
 import { SectionService } from '../../shared/services/section/section.service';
+import { AfsHeader } from '../../shared/models/afs-header';
 
 @Component({
   selector: 'app-header',
@@ -20,7 +20,7 @@ import { SectionService } from '../../shared/services/section/section.service';
 })
 export class HeaderComponent implements AfterViewInit, OnChanges {
   @Output() tellUsClick: EventEmitter<boolean> = new EventEmitter<boolean>();
-  @Input() headerData: AfsSection;
+  @Input() headerData: AfsHeader;
   @ViewChild('canvasContainer') elementRef: ElementRef;
   private pauseRendering = false;
 
