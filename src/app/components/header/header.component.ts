@@ -84,7 +84,7 @@ export class HeaderComponent implements AfterViewInit, OnChanges {
     this.camera.position.z = this.cameraZ;
     this.scene = new THREE.Scene();
 
-    const texture = new THREE.ImageUtils.loadTexture('/assets/img/logo-sprite.png');
+    const texture = new THREE.TextureLoader().load('/assets/img/logo-sprite.png');
     const spriteMaterial = new THREE.SpriteMaterial({
         opacity: 0.3,
         map: texture
