@@ -1,19 +1,15 @@
 <div class="container">
   <div fxLayout="row" fxLayout.lt-lg="column" fxLayoutAlign="center center" *ngIf="servicesData; else loading">
-    <div fxFlex="50" fxFlex.lt-lg="100" class="book-wrapper" fxFlexOrder.lt-lg="2">
-      <div class="book-preview" fxLayout="column" fxLayoutAlign="center center">
-        <div class="tablet-background"></div>
-        <img src="assets/img/kindle.png" class="background-device" alt="" fxFlexOrder.lt-lg="1">
-        <div class="book" fxLayout="row" fxLayout.lt-lg="column" fxLayoutAlign="center center">
-          <img src="assets/img/application_layers.png" class="tablet-screen" alt="">
-        </div>
-      </div>
-    </div>
-    <div fxFlex="50">
+    <div>
       <h2 class="heading wow animated fadeInUp">{{ servicesData.title }}</h2>
       <h4 class="subheading wow animated fadeInUp">{{ servicesData.subTitle }}</h4>
       <p class="small muted wow animated fadeInUp">{{ servicesData.content1 }}</p>
-      <p class="small muted wow animated fadeInUp">{{ servicesData.content2 }}</p>
+    </div>
+    <div class="job wow animated fadeInUp" *ngFor="let service of servicesData.services">
+      <h4 class="heading">{{ service.service }}</h4>
+      <div fxLayout="row" fxLayoutAlign="space-between" fxLayoutAlign.lt-lg="center space-evenly">
+        <p class="small muted wow animated fadeInUp">{{ service.description }}</p>
+      </div>
     </div>
   </div>
 </div>

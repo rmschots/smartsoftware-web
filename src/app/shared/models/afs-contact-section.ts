@@ -9,7 +9,7 @@ export interface AfsContactSection extends AfsSection {
   reason: string;
   reasons:{
     title: string;
-    descrption
+    description: string;
   }[];
   phone: string;
   email: string;

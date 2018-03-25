@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { AfsSection } from '../../../shared/models/afs-section';
+import { AfsServicesSection } from '../../../shared/models/afs-services-section';
 
 @Component({
   selector: 'app-services',
@@ -8,5 +8,5 @@ import { AfsSection } from '../../../shared/models/afs-section';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ServicesComponent {
-  @Input() servicesData: AfsSection;
+  @Input() servicesData: AfsServicesSection;
 }
