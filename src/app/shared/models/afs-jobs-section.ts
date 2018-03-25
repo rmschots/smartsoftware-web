@@ -10,4 +10,5 @@ export interface Job {
 export interface AfsJobsSection extends AfsSection {
   jobs: Job[];
   jobsTitle: string;
+  jobDetails: string;
 }
