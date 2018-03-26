@@ -1,19 +1,19 @@
 import { ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { Unsubscribable } from '../../shared/util/unsubscribable';
+import { Unsubscribable } from '../../../shared/util/unsubscribable';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { MatDialogRef, MatStep } from '@angular/material';
 import { fromPromise } from 'rxjs/observable/fromPromise';
-import { AfsContactMessage } from '../../shared/models/afs-contact-message';
+import { AfsContactMessage } from '../../../shared/models/afs-contact-message';
 
 @Component({
-  selector: 'app-tell-us-dialog',
-  templateUrl: './tell-us-dialog.component.html',
-  styleUrls: ['./tell-us-dialog.component.scss'],
+  selector: 'app-create-your-own-job-dialog',
+  templateUrl: './create-your-own-job-dialog.component.html',
+  styleUrls: ['./create-your-own-job-dialog.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TellUsDialogComponent extends Unsubscribable {
+export class CreateYourOwnJobDialogComponent extends Unsubscribable {
 
   @ViewChild('doneStep') doneStep: MatStep;
 
@@ -24,7 +24,7 @@ export class TellUsDialogComponent extends Unsubscribable {
 
   constructor(private _fb: FormBuilder,
               private _afs: AngularFirestore,
-              private _dialogRef: MatDialogRef<TellUsDialogComponent>) {
+              private _dialogRef: MatDialogRef<CreateYourOwnJobDialogComponent>) {
     super();
     this.tellUsFormGroup = _fb.group({
       contactInfo: _fb.group({

@@ -9,10 +9,10 @@ import { AfsJobsSection, Job } from './shared/models/afs-jobs-section';
 import { AfsSection } from './shared/models/afs-section';
 import { AfsContactSection } from './shared/models/afs-contact-section';
 import { MatDialog, MatSidenav } from '@angular/material';
-import { TellUsDialogComponent } from './components/tell-us-dialog/tell-us-dialog.component';
+import { TellUsDialogComponent } from './components/dialogs/tell-us-dialog/tell-us-dialog.component';
 import { OverlayContainer } from '@angular/cdk/overlay';
-import { CreateYourOwnJobDialogComponent } from './components/create-your-own-job-dialog/create-your-own-job-dialog.component';
-import { JobApplicationDialogComponent } from './components/job-application-dialog/job-application-dialog.component';
+import { CreateYourOwnJobDialogComponent } from './components/dialogs/create-your-own-job-dialog/create-your-own-job-dialog.component';
+import { JobApplicationDialogComponent } from './components/dialogs/job-application-dialog/job-application-dialog.component';
 import { MediaChange, ObservableMedia } from '@angular/flex-layout';
 import { Unsubscribable } from './shared/util/unsubscribable';
 

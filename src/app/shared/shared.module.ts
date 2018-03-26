@@ -21,9 +21,9 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 import { RECAPTCHA_SETTINGS, RecaptchaModule, RecaptchaSettings } from 'ng-recaptcha';
 import { RecaptchaFormsModule } from 'ng-recaptcha/forms';
-import { TellUsDialogComponent } from '../components/tell-us-dialog/tell-us-dialog.component';
-import { CreateYourOwnJobDialogComponent } from '../components/create-your-own-job-dialog/create-your-own-job-dialog.component';
-import { JobApplicationDialogComponent } from '../components/job-application-dialog/job-application-dialog.component';
+import { TellUsDialogComponent } from '../components/dialogs/tell-us-dialog/tell-us-dialog.component';
+import { CreateYourOwnJobDialogComponent } from '../components/dialogs/create-your-own-job-dialog/create-your-own-job-dialog.component';
+import { JobApplicationDialogComponent } from '../components/dialogs/job-application-dialog/job-application-dialog.component';
 
 const DIALOGS = [
   TellUsDialogComponent,
