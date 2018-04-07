@@ -1,0 +1,13 @@
+.top-icon-text {
+  display: flex;
+
+  > div {
+    align-items: center;
+    display: flex;
+    margin-right: 30px;
+  }
+}
+
+.center-dialog-actions {
+  justify-content: center;
+}

@@ -1,0 +1,17 @@
+<h2 mat-dialog-title>{{ job.title }}</h2>
+<div>
+  <div class="small muted top-icon-text">
+    <div class="top-icon-text-date">
+      <mat-icon>event</mat-icon>
+      {{ job.date | date: 'dd/MM/yyyy' }}
+    </div>
+    <div class="top-icon-text-location">
+      <mat-icon>location_city</mat-icon>
+      {{ job.location }}
+    </div>
+  </div>
+  <p class="small muted">{{ job.description }}</p>
+</div>
+<mat-dialog-actions class="center-dialog-actions">
+  <button mat-button mat-dialog-close>Apply now</button>
+</mat-dialog-actions>

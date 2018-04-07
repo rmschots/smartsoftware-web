@@ -1,20 +1,19 @@
 import { ChangeDetectionStrategy, Component, ElementRef, HostBinding, HostListener, Inject, OnInit, ViewChild } from '@angular/core';
-import { PageScrollConfig, PageScrollService } from 'ngx-page-scroll';
+import { PageScrollConfig, PageScrollInstance, PageScrollService } from 'ngx-page-scroll';
 import { SectionService } from './shared/services/section/section.service';
 import { NgwWowService } from 'ngx-wow';
 import { DOCUMENT } from '@angular/common';
-import { Observable } from 'rxjs/Observable';
-import { AngularFirestore, DocumentChangeAction } from 'angularfire2/firestore';
-import { AfsJobsSection, Job } from './shared/models/afs-jobs-section';
-import { AfsSection } from './shared/models/afs-section';
-import { AfsContactSection } from './shared/models/afs-contact-section';
+import { DocumentChangeAction } from 'angularfire2/firestore';
+import { AfsJob } from './shared/models/afs-jobs-section';
 import { MatDialog, MatSidenav } from '@angular/material';
-import { TellUsDialogComponent } from './components/dialogs/tell-us-dialog/tell-us-dialog.component';
+import { TellUsDialogComponent } from './shared/components/dialogs/tell-us-dialog/tell-us-dialog.component';
 import { OverlayContainer } from '@angular/cdk/overlay';
-import { CreateYourOwnJobDialogComponent } from './components/dialogs/create-your-own-job-dialog/create-your-own-job-dialog.component';
-import { JobApplicationDialogComponent } from './components/dialogs/job-application-dialog/job-application-dialog.component';
+import { CreateYourOwnJobDialogComponent } from './shared/components/dialogs/create-your-own-job-dialog/create-your-own-job-dialog.component';
+import { JobApplicationDialogComponent } from './shared/components/dialogs/job-application-dialog/job-application-dialog.component';
 import { MediaChange, ObservableMedia } from '@angular/flex-layout';
 import { Unsubscribable } from './shared/util/unsubscribable';
+import { Router } from '@angular/router';
+import { FirebaseService } from './shared/services/firebase.service';
 
 @Component({
   selector: 'app-root',
@@ -24,58 +23,36 @@ import { Unsubscribable } from './shared/util/unsubscribable';
 })
 export class AppComponent extends Unsubscribable implements OnInit {
 
-  @HostBinding('class.dark-theme') isDarkTheme = false;
+  private static darkThemeClassName = 'dark-theme';
+
+  @HostBinding(`class.${AppComponent.darkThemeClassName}`) isDarkTheme = false;
   @HostBinding('class.text-center') textCenterClass = false;
   @ViewChild(MatSidenav) sidenav;
-
-  sectionsChange$: Observable<DocumentChangeAction[]>;
-
-  headerData$: Observable<AfsSection>;
-  servicesData$: Observable<AfsSection>;
-  sloganData$: Observable<AfsSection>;
-  careersData$: Observable<AfsSection>;
-  callToActionData$: Observable<AfsSection>;
-  contactData$: Observable<AfsSection>;
 
   constructor(public media: ObservableMedia,
               private _el: ElementRef,
               private _sectionService: SectionService,
+              private _firebaseService: FirebaseService,
               private _wowService: NgwWowService,
               private _pageScrollService: PageScrollService,
-              private _afs: AngularFirestore,
               private _dialog: MatDialog,
               private _overlayContainer: OverlayContainer,
-              @Inject(DOCUMENT) private _document: any) {
+              @Inject(DOCUMENT) private _document: any,
+              private _router: Router) {
     super();
-    media.asObservable().takeUntil(this.ngUnsubscribe$).subscribe((mediaChange: MediaChange) => {
-      if (media.isActive('lt-lg')) {
-        PageScrollConfig.defaultScrollOffset = 0;
-        this.textCenterClass = true;
-      } else {
-        PageScrollConfig.defaultScrollOffset = 104;
-        this.textCenterClass = false;
-      }
-    });
-    PageScrollConfig.defaultEasingLogic = {
-      ease: (t: number, b: number, c: number, d: number): number => {
-        // easeInOutExpo easing
-        if (t === 0) return b;
-        if (t === d) return b + c;
-        if ((t /= d / 2) < 1) return c / 2 * Math.pow(2, 10 * (t - 1)) + b;
-        return c / 2 * (-Math.pow(2, -10 * --t) + 2) + b;
-      }
-    };
-    PageScrollConfig.defaultDuration = 750;
+    history.scrollRestoration = 'manual';
+    this.observeMedia();
+    this.configurePageScroll();
     this.initSections();
   }
 
   themeChanged() {
     if (this.isDarkTheme) {
       this.isDarkTheme = false;
-      this._overlayContainer.getContainerElement().classList.remove('dark-theme');
+      this._overlayContainer.getContainerElement().classList.remove(AppComponent.darkThemeClassName);
     } else {
       this.isDarkTheme = true;
-      this._overlayContainer.getContainerElement().classList.add('dark-theme');
+      this._overlayContainer.getContainerElement().classList.add(AppComponent.darkThemeClassName);
     }
   }
 
@@ -100,7 +77,7 @@ export class AppComponent extends Unsubscribable implements OnInit {
     this._dialog.open(CreateYourOwnJobDialogComponent);
   }
 
-  openJobDetails(job: Job) {
+  openJobDetails(job: AfsJob) {
     this._dialog.open(JobApplicationDialogComponent, {
       data: {
         job: job
@@ -112,14 +89,45 @@ export class AppComponent extends Unsubscribable implements OnInit {
     this.sidenav.open();
   }
 
+  get jobs$() {
+    return this._firebaseService.jobs$;
+  }
+
+  get headerData$() {
+    return this._firebaseService.headerData$;
+  }
+
+  get servicesData$() {
+    return this._firebaseService.servicesData$;
+  }
+
+  get sloganData$() {
+    return this._firebaseService.sloganData$;
+  }
+
+  get careersData$() {
+    return this._firebaseService.careersData$;
+  }
+
+  get callToActionData$() {
+    return this._firebaseService.callToActionData$;
+  }
+
+  get contactData$() {
+    return this._firebaseService.contactData$;
+  }
+
   private initSections() {
-    this.sectionsChange$ = this._afs.collection<AfsJobsSection>('sections').snapshotChanges();
-    this.headerData$ = this.sectionsChange$.map(actions => this.findSection(actions, 'header') as AfsSection);
-    this.servicesData$ = this.sectionsChange$.map(actions => this.findSection(actions, 'services') as AfsSection);
-    this.sloganData$ = this.sectionsChange$.map(actions => this.findSection(actions, 'slogan') as AfsSection);
-    this.careersData$ = this.sectionsChange$.map(actions => this.findSection(actions, 'careers') as AfsJobsSection);
-    this.callToActionData$ = this.sectionsChange$.map(actions => this.findSection(actions, 'callToAction') as AfsSection);
-    this.contactData$ = this.sectionsChange$.map(actions => this.findSection(actions, 'contact') as AfsContactSection);
+    this._firebaseService.init();
+    this._firebaseService.sectionsChange$
+      .takeUntil(this.ngUnsubscribe$)
+      .subscribe(() => {
+        const fragment = this._router.routerState.snapshot.root.fragment;
+        if (fragment) {
+          const pageScrollInstance: PageScrollInstance = PageScrollInstance.simpleInstance(this._el.nativeElement, `#${fragment}`);
+          setTimeout(() => this._pageScrollService.start(pageScrollInstance));
+        }
+      });
   }
 
   private findSection(actions: DocumentChangeAction[], sectionName: string) {
@@ -128,5 +136,30 @@ export class AppComponent extends Unsubscribable implements OnInit {
       return null;
     }
     return foundSectionAction.payload.doc.data();
+  }
+
+  private configurePageScroll() {
+    PageScrollConfig.defaultEasingLogic = {
+      ease: (t: number, b: number, c: number, d: number): number => {
+        // easeInOutExpo easing
+        if (t === 0) return b;
+        if (t === d) return b + c;
+        if ((t /= d / 2) < 1) return c / 2 * Math.pow(2, 10 * (t - 1)) + b;
+        return c / 2 * (-Math.pow(2, -10 * --t) + 2) + b;
+      }
+    };
+    PageScrollConfig.defaultDuration = 750;
+  }
+
+  private observeMedia() {
+    this.media.asObservable().takeUntil(this.ngUnsubscribe$).subscribe((mediaChange: MediaChange) => {
+      if (this.media.isActive('lt-lg')) {
+        PageScrollConfig.defaultScrollOffset = 0;
+        this.textCenterClass = true;
+      } else {
+        PageScrollConfig.defaultScrollOffset = 104;
+        this.textCenterClass = false;
+      }
+    });
   }
 }

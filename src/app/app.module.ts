@@ -22,6 +22,7 @@ import { MatDialogModule } from '@angular/material';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { FooterComponent } from './components/footer/footer.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
+import { JobDetailsComponent } from './components/job-details/job-details.component';
 
 const SINGLETON_MODULES = [
   BrowserModule,
@@ -48,7 +49,8 @@ const CONTAINERS = [
   CallToActionComponent,
   SloganComponent,
   FooterComponent,
-  SidenavComponent
+  SidenavComponent,
+  JobDetailsComponent
 ];
 
 @NgModule({

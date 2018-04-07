@@ -1,11 +1,11 @@
 import { ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { Unsubscribable } from '../../../shared/util/unsubscribable';
+import { Unsubscribable } from '../../../util/unsubscribable';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { MatDialogRef, MatStep } from '@angular/material';
 import { fromPromise } from 'rxjs/observable/fromPromise';
-import { AfsContactMessage } from '../../../shared/models/afs-contact-message';
+import { AfsContactMessage } from '../../../models/afs-contact-message';
 
 @Component({
   selector: 'app-tell-us-dialog',

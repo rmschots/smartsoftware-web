@@ -33,6 +33,7 @@
       <app-section sectionName="JOBS">
         <app-careers [careersData]="careersData$ | async" (jobDetailsClick)="openJobDetails($event)"></app-careers>
       </app-section>
+      <router-outlet></router-outlet>
     </section>
 
     <section>

@@ -21,14 +21,17 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 import { RECAPTCHA_SETTINGS, RecaptchaModule, RecaptchaSettings } from 'ng-recaptcha';
 import { RecaptchaFormsModule } from 'ng-recaptcha/forms';
-import { TellUsDialogComponent } from '../components/dialogs/tell-us-dialog/tell-us-dialog.component';
-import { CreateYourOwnJobDialogComponent } from '../components/dialogs/create-your-own-job-dialog/create-your-own-job-dialog.component';
-import { JobApplicationDialogComponent } from '../components/dialogs/job-application-dialog/job-application-dialog.component';
+import { TellUsDialogComponent } from './components/dialogs/tell-us-dialog/tell-us-dialog.component';
+import { CreateYourOwnJobDialogComponent } from './components/dialogs/create-your-own-job-dialog/create-your-own-job-dialog.component';
+import { JobApplicationDialogComponent } from './components/dialogs/job-application-dialog/job-application-dialog.component';
+import { JobDetailsDialogComponent } from './components/dialogs/job-details-dialog/job-details-dialog.component';
+import { FirebaseService } from './services/firebase.service';
 
 const DIALOGS = [
   TellUsDialogComponent,
   CreateYourOwnJobDialogComponent,
-  JobApplicationDialogComponent
+  JobApplicationDialogComponent,
+  JobDetailsDialogComponent
 ];
 
 const COMPONENTS = [
@@ -38,6 +41,7 @@ const COMPONENTS = [
 
 const SERVICES = [
   SectionService,
+  FirebaseService,
   {
     provide: RECAPTCHA_SETTINGS,
     useValue: {siteKey: '6LdcFU0UAAAAAJO-X2OKoqeuiLDRJ8TouPBsdFln'} as RecaptchaSettings,

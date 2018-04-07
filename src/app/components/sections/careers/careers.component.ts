@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
-import { AfsJobsSection, Job } from '../../../shared/models/afs-jobs-section';
+import { AfsJobsSection, AfsJob } from '../../../shared/models/afs-jobs-section';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-careers',
@@ -8,11 +9,18 @@ import { AfsJobsSection, Job } from '../../../shared/models/afs-jobs-section';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CareersComponent {
-  @Output() jobDetailsClick: EventEmitter<Job> = new EventEmitter<Job>();
+  @Output() jobDetailsClick: EventEmitter<AfsJob> = new EventEmitter<AfsJob>();
   @Input() careersData: AfsJobsSection;
 
+  constructor(private _router: Router) {
+  }
 
-  clickJobDetails(job: Job) {
+
+  clickJobDetails(job: AfsJob) {
     this.jobDetailsClick.next(job);
+  }
+
+  openJobDetails(job: AfsJob) {
+    this._router.navigate(['/jobs/' + job.id], {fragment: 'JOBS'});
   }
 }

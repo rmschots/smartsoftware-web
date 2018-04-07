@@ -1,6 +1,7 @@
 import { AfsSection } from './afs-section';
 
-export interface Job {
+export interface AfsJob {
+  id: string;
   date: Date;
   location: string;
   title: string;
@@ -8,7 +9,7 @@ export interface Job {
 }
 
 export interface AfsJobsSection extends AfsSection {
-  jobs: Job[];
+  jobs: AfsJob[];
   jobsTitle: string;
   jobDetails: string;
   reason: string;

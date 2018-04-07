@@ -1,4 +1,4 @@
-<div class="navbar-brand" href="#" pageScroll pageScrollTarget="#top" [pageScrollDuration]="0" (click)="scrollTop()">
+<div class="navbar-brand" href="#" pageScroll pageScrollTarget="#top" [pageScrollDuration]="0" [pageScrollAdjustHash]="true" (click)="scrollTop()">
   <img src="assets/img/logo.png" alt="">
 </div>
 <div class="nav-links">
@@ -6,7 +6,7 @@
     <li *ngFor="let sectionName of sectionNames$ | async">
       <button *ngIf="activeSectionName$ | async as activeSectionName" mat-button
               [ngClass]="{ 'active-section': sectionName === activeSectionName}"
-              pageScroll [pageScrollTarget]="'#'+ sectionName">
+              pageScroll [pageScrollTarget]="'#'+ sectionName" [pageScrollAdjustHash]="true">
         {{ sectionName }}
       </button>
     </li>
