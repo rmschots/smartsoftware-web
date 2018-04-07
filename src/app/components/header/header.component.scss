@@ -2,6 +2,7 @@
 
 .header-fit-content {
   height: auto;
+  min-height: 100vh;
 }
 
 .header-full-screen {
@@ -37,7 +38,7 @@ canvas {
 
   .subheading {
     font-size: 24px;
-    margin: 10px 0px 30px;
+    margin: 10px 0 30px;
     opacity: .5;
   }
 

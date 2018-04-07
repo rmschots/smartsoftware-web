@@ -54,7 +54,7 @@ export class HeaderComponent implements AfterViewInit, OnChanges {
   ngAfterViewInit(): void {
     this.container = this.elementRef.nativeElement;
 
-    this.height = this._elementRef.nativeElement.getBoundingClientRect().height;
+    this.height = Math.max(this._elementRef.nativeElement.getBoundingClientRect().height, document.documentElement.clientHeight);
     this.winHalfY = this.height / 2;
     this.width = window.innerWidth;
     this.winHalfX = this.width / 2;
@@ -172,7 +172,7 @@ export class HeaderComponent implements AfterViewInit, OnChanges {
 
   @HostListener('window:resize', ['$event'])
   onWindowResize() {
-    this.height = this._elementRef.nativeElement.getBoundingClientRect().height;
+    this.height = Math.max(this._elementRef.nativeElement.getBoundingClientRect().height, document.documentElement.clientHeight);
     this.winHalfY = this.height / 2;
     this.width = window.innerWidth;
     this.winHalfX = this.width / 2;
