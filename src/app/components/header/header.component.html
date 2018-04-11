@@ -9,10 +9,10 @@
     <h4 class="subheading">{{ headerData.subTitle }}</h4>
     <p>{{ headerData.content1 }}</p>
     <div fxLayout="row" fxLayout.lt-lg="column" fxLayoutAlign="center" fxLayoutGap="32px">
-      <button mat-button pageScroll pageScrollTarget="#SERVICES" [pageScrollAdjustHash]="true" class="mat-elevation-z2">
+      <button mat-raised-button color="accent" pageScroll pageScrollTarget="#SERVICES" [pageScrollAdjustHash]="true" class="mat-elevation-z2">
         {{ headerData.services }}
       </button>
-      <button mat-button pageScroll pageScrollTarget="#JOBS" [pageScrollAdjustHash]="true" class="mat-elevation-z2">
+      <button mat-raised-button color="accent" pageScroll pageScrollTarget="#JOBS" [pageScrollAdjustHash]="true" class="mat-elevation-z2">
         {{ headerData.jobs }}
       </button>
       <button mat-raised-button color="primary" class="mat-elevation-z2 shine" (click)="clickTellUs()">

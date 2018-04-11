@@ -13,10 +13,19 @@ mat-form-field {
 
 .contact-details .details {
   margin-top: 70px;
+
+  mat-icon {
+    margin-right: 16px;
+  }
 }
 
 .form-bottom {
   align-items: center;
   display: flex;
   justify-content: space-between;
+}
+
+.undecorated-link {
+  color: #43a047;
+  text-decoration: none;
 }

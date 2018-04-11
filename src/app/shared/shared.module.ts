@@ -11,9 +11,12 @@ import {
   MatFormFieldModule,
   MatIconModule,
   MatInputModule,
+  MatPaginatorModule,
   MatProgressSpinnerModule,
   MatSidenavModule,
-  MatStepperModule
+  MatSortModule,
+  MatStepperModule,
+  MatTableModule
 } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgwWowModule } from 'ngx-wow';
@@ -64,7 +67,10 @@ const MATERIAL_MODULES = [
   MatDialogModule,
   MatSidenavModule,
   MatExpansionModule,
-  MatCardModule
+  MatCardModule,
+  MatTableModule,
+  MatPaginatorModule,
+  MatSortModule
 ];
 
 const MODULES = [

@@ -23,6 +23,7 @@ import { OverlayModule } from '@angular/cdk/overlay';
 import { FooterComponent } from './components/footer/footer.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { JobDetailsComponent } from './components/job-details/job-details.component';
+import { JobsListComponent } from './components/sections/careers/jobs-list/jobs-list.component';
 
 const SINGLETON_MODULES = [
   BrowserModule,
@@ -50,7 +51,8 @@ const CONTAINERS = [
   SloganComponent,
   FooterComponent,
   SidenavComponent,
-  JobDetailsComponent
+  JobDetailsComponent,
+  JobsListComponent
 ];
 
 @NgModule({

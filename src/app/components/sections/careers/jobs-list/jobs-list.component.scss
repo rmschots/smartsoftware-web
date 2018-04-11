@@ -1,0 +1,12 @@
+:host {
+  display: block;
+}
+
+.jobs-list-header {
+  min-height: 64px;
+  padding: 8px 24px 0;
+
+  mat-form-field {
+    width: 100%;
+  }
+}

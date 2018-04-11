@@ -41,6 +41,7 @@ export class AppComponent extends Unsubscribable implements OnInit {
               private _router: Router) {
     super();
     history.scrollRestoration = 'manual';
+    this.initTheme();
     this.observeMedia();
     this.configurePageScroll();
     this.initSections();
@@ -50,9 +51,11 @@ export class AppComponent extends Unsubscribable implements OnInit {
     if (this.isDarkTheme) {
       this.isDarkTheme = false;
       this._overlayContainer.getContainerElement().classList.remove(AppComponent.darkThemeClassName);
+      window.localStorage.setItem('darkTheme', 'false');
     } else {
       this.isDarkTheme = true;
       this._overlayContainer.getContainerElement().classList.add(AppComponent.darkThemeClassName);
+      window.localStorage.setItem('darkTheme', 'true');
     }
   }
 
@@ -130,14 +133,6 @@ export class AppComponent extends Unsubscribable implements OnInit {
       });
   }
 
-  private findSection(actions: DocumentChangeAction[], sectionName: string) {
-    const foundSectionAction = actions.find(action => action.payload.doc.id === sectionName);
-    if (!foundSectionAction) {
-      return null;
-    }
-    return foundSectionAction.payload.doc.data();
-  }
-
   private configurePageScroll() {
     PageScrollConfig.defaultEasingLogic = {
       ease: (t: number, b: number, c: number, d: number): number => {
@@ -161,5 +156,12 @@ export class AppComponent extends Unsubscribable implements OnInit {
         this.textCenterClass = false;
       }
     });
+  }
+
+  private initTheme() {
+    if (window.localStorage.getItem('darkTheme') === 'true') {
+      this.isDarkTheme = true;
+      this._overlayContainer.getContainerElement().classList.add(AppComponent.darkThemeClassName);
+    }
   }
 }

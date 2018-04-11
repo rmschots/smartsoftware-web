@@ -24,6 +24,7 @@
   $app-foreground-sub: mat-color($app-foreground-palette, secondary-text);
   $app-link: mat-color($app-foreground-palette, text);
   $app-link-hover: mat-color($app-foreground-palette, text, .3);
+  $app-hover-background: mat-color($app-background-palette, hover);
 
   .text-alt {
     color: $app-foreground-alt;
@@ -50,7 +51,7 @@
   }
 
   .app-header-background {
-    background: linear-gradient(to right, $app-background, $app-header-background);
+    background: linear-gradient(to right, #303030, $app-header-background);
   }
 
   .app-header-foreground {
@@ -69,5 +70,13 @@
   section, footer {
     background: $app-background;
     color: $app-foreground;
+  }
+
+  .table-row-selection {
+    cursor: pointer;
+
+    &:hover {
+      background: $app-hover-background;
+    }
   }
 }

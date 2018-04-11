@@ -2,26 +2,35 @@
   <div fxLayout="row" fxLayout.lt-lg="column" *ngIf="contactData; else loading">
     <div fxFlex="50" class="text-left text-center-mobile contact-details">
       <h3 class="heading no-margin wow animated fadeInUp">{{ contactData.title }}</h3>
-      <h4 class="subheading muted no-margin wow animated fadeInUp">{{ contactData.subTitle }}</h4>
+      <p class="small muted muted-light wow  fadeInUp animated">{{ contactData.subTitle }}</p>
       <div class="details">
         <h6 class="heading no-margin wow animated fadeInUp">{{ contactData.address.title }}</h6>
-        <p class="small muted no-margin wow animated fadeInUp">
-          {{ contactData.address.street }}
-          <br>
+        <p class="small muted no-margin wow animated fadeInUp" fxLayout="row" fxLayoutAlign="start center" fxLayoutAlign.lt-lg="center center">
+          <mat-icon>location_city</mat-icon>
+          {{ contactData.address.street }},
           {{ contactData.address.place }}
-          <br>
-          {{ contactData.vat }}</p>
+        </p>
+        <p class="small muted no-margin wow animated fadeInUp" fxLayout="row" fxLayoutAlign="start center" fxLayoutAlign.lt-lg="center center">
+          <mat-icon>business</mat-icon>
+          {{ contactData.vat }}
+        </p>
       </div>
       <div class="details">
-        <h4 class="subheading accent no-margin wow animated fadeInUp">
-          {{ contactData.phone }}
-          <br>
-          {{ contactData.email }}
+        <h4 class="subheading accent no-margin wow animated fadeInUp" fxLayout="column">
+          <span class="icon-text-wrapper" fxLayout="row" fxLayoutAlign="start center" fxLayoutAlign.lt-lg="center center">
+            <mat-icon>phone</mat-icon>
+            <a class="undecorated-link" href="tel:{{ contactData.phone }}">{{ contactData.phone }}</a>
+          </span>
+          <span class="icon-text-wrapper" fxLayout="row" fxLayoutAlign="start center" fxLayoutAlign.lt-lg="center center">
+            <mat-icon>email</mat-icon>
+            <a class="undecorated-link" href="mailto:{{ contactData.email }}">{{ contactData.email }}</a>
+          </span>
         </h4>
       </div>
     </div>
     <form #contactForm fxFlex="50" fxLayout="column" fxLayoutGap="20px" [formGroup]="contactFormGroup"
-          class="mail-form wow animated fadeInUp" (ngSubmit)="onSubmit()" *ngIf="!(formSubmitted$ | async); else submitted">
+          class="mail-form wow animated fadeInUp" (ngSubmit)="onSubmit()"
+          *ngIf="!(formSubmitted$ | async); else submitted">
       <div fxLayout="row">
         <div fxFlex="50" class="field-padding">
           <mat-form-field>

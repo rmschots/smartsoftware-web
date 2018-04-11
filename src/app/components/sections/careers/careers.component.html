@@ -1,5 +1,5 @@
 <div class="container">
-  <div fxLayout="col" fxLayout.lt-lg="column" *ngIf="careersData; else loading">
+  <div fxLayout fxLayout.lt-lg="column" fxLayoutAlign="space-between" *ngIf="careersData; else loading">
     <div fxFlex="50">
       <div fxLayout fxLayoutAlign="center center" fxLayoutGap="10%" class="careers">
         <div>
@@ -26,28 +26,33 @@
         </div>
       </div>
     </div>
-    <div fxFlex="35" fxFlexOffset="15">
+    <div fxFlex="35">
       <h3 class="heading wow animated fadeInUp">{{ careersData.jobsTitle }}</h3>
-      <div class="jobs app-foreground-sub">
-        <div class="job wow animated fadeInUp" *ngFor="let job of careersData.jobs">
-          <h4 class="heading">{{ job.title }}, <span class="light">{{ job.location }}</span></h4>
-          <div fxLayout="row" fxLayoutAlign="space-between" fxLayoutAlign.lt-lg="center space-evenly">
-            <div class="date">
-              <mat-icon>event</mat-icon>
-              <span>{{ job.date | date: 'dd/MM/yyyy' }}</span>
-            </div>
-            <div class="details">
-              <button mat-raised-button color="primary" class="mat-elevation-z2" (click)="openJobDetails(job)">
-                {{ careersData.jobDetails }}
-              </button>
+      <div class="jobs app-foreground-sub" fxLayout="column" fxLayoutGap="32px">
+        <div>
+          <div class="job wow animated fadeInUp" *ngFor="let job of careersData.jobs">
+            <h4 class="heading">{{ job.title }}, <span class="light">{{ job.location }}</span></h4>
+            <div fxLayout="row" fxLayoutAlign="space-between" fxLayoutAlign.lt-lg="center space-evenly">
+              <div class="date">
+                <mat-icon>event</mat-icon>
+                <span>{{ job.date | date: 'dd/MM/yyyy' }}</span>
+              </div>
+              <div class="details">
+                <button mat-raised-button color="primary" class="mat-elevation-z2" (click)="openJobDetails(job)">
+                  {{ careersData.jobDetails }}
+                </button>
+              </div>
             </div>
           </div>
         </div>
-        <button mat-button class="mat-elevation-z2">
+        <button *ngIf="!(allJobsVisible$ | async)" mat-raised-button color="accent" class="mat-elevation-z2" (click)="openAllJobs()">
           {{ careersData.allJobs }}
         </button>
       </div>
     </div>
+  </div>
+  <div *ngIf="allJobsVisible$ | async" id="job-list" class="job-list">
+    <app-jobs-list [careersData]="careersData"></app-jobs-list>
   </div>
 </div>
 <ng-template #loading>
