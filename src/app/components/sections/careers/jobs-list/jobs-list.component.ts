@@ -21,7 +21,7 @@ export class JobsListComponent implements AfterViewInit {
   @Input()
   set careersData(jobsSectionData: AfsJobsSection) {
     if (jobsSectionData) {
-      this.dataSource.data = [...jobsSectionData.jobs, ...jobsSectionData.jobs, ...jobsSectionData.jobs, ...jobsSectionData.jobs];
+      this.dataSource.data = jobsSectionData.jobs;
     }
   }
 
