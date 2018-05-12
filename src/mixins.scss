@@ -51,7 +51,7 @@
   }
 
   .app-header-background {
-    background: linear-gradient(to right, #303030, $app-header-background);
+    background: linear-gradient(to right, $app-background, $app-header-background);
   }
 
   .app-header-foreground {
