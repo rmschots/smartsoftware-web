@@ -12,7 +12,7 @@ import {
   MatIconModule,
   MatInputModule,
   MatPaginatorModule,
-  MatProgressSpinnerModule,
+  MatProgressSpinnerModule, MatRippleModule,
   MatSidenavModule,
   MatSortModule,
   MatStepperModule,
@@ -30,6 +30,11 @@ import { JobApplicationDialogComponent } from './components/dialogs/job-applicat
 import { JobDetailsDialogComponent } from './components/dialogs/job-details-dialog/job-details-dialog.component';
 import { FirebaseService } from './services/firebase.service';
 import { FacebookService } from './services/facebook.service';
+import { CdkDetailRowDirective } from './directives/cdk-detail-row/cdk-detail-row.directive';
+
+const DIRECTIVES = [
+  CdkDetailRowDirective
+];
 
 const DIALOGS = [
   TellUsDialogComponent,
@@ -72,7 +77,8 @@ const MATERIAL_MODULES = [
   MatCardModule,
   MatTableModule,
   MatPaginatorModule,
-  MatSortModule
+  MatSortModule,
+  MatRippleModule
 ];
 
 const MODULES = [
@@ -93,13 +99,14 @@ const MODULES = [
   ],
   exports: [
     ...MODULES,
+    ...DIRECTIVES,
     ...COMPONENTS,
     ...PIPES
   ],
   declarations: [
+    ...DIRECTIVES,
     ...COMPONENTS,
-    ...PIPES,
-    LoadingSpinnerComponent
+    ...PIPES
   ],
   entryComponents: [
     ...DIALOGS

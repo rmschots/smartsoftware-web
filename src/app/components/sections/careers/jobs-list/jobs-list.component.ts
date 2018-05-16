@@ -2,6 +2,7 @@ import { AfterViewInit, Component, Input, ViewChild } from '@angular/core';
 import { AfsJob, AfsJobsSection } from '../../../../shared/models/afs-jobs-section';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { SelectionModel } from '@angular/cdk/collections';
+import { CdkDetailRowDirective } from '../../../../shared/directives/cdk-detail-row/cdk-detail-row.directive';
 
 @Component({
   selector: 'app-jobs-list',
@@ -14,6 +15,7 @@ export class JobsListComponent implements AfterViewInit {
 
   dataSource: MatTableDataSource<AfsJob> = new MatTableDataSource<AfsJob>([]);
   selection = new SelectionModel<AfsJob>();
+  private openedRow: CdkDetailRowDirective
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -36,7 +38,7 @@ export class JobsListComponent implements AfterViewInit {
     this.dataSource.sort = this.sort;
   }
 
-  selectRow(row: AfsJob) {
-    this.selection.select(row);
+  onToggleChange(cdkDetailRow: CdkDetailRowDirective) : void {
+    this.openedRow = cdkDetailRow.expanded ? cdkDetailRow : undefined;
   }
 }
