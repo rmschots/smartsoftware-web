@@ -14,6 +14,7 @@ import { MediaChange, ObservableMedia } from '@angular/flex-layout';
 import { Unsubscribable } from './shared/util/unsubscribable';
 import { Router } from '@angular/router';
 import { FirebaseService } from './shared/services/firebase.service';
+import { FacebookService } from './shared/services/facebook.service';
 
 @Component({
   selector: 'app-root',
@@ -32,6 +33,7 @@ export class AppComponent extends Unsubscribable implements OnInit {
   constructor(public media: ObservableMedia,
               private _el: ElementRef,
               private _sectionService: SectionService,
+              private _facebookService: FacebookService,
               private _firebaseService: FirebaseService,
               private _wowService: NgwWowService,
               private _pageScrollService: PageScrollService,
@@ -73,14 +75,17 @@ export class AppComponent extends Unsubscribable implements OnInit {
   }
 
   openTellUs() {
+    this._facebookService.sendCustomEvent("openTellUs", {});
     this._dialog.open(TellUsDialogComponent);
   }
 
   openCreateYourOwnJob() {
+    this._facebookService.sendCustomEvent("openCreateYourOwnJob", {});
     this._dialog.open(CreateYourOwnJobDialogComponent);
   }
 
   openJobDetails(job: AfsJob) {
+    this._facebookService.sendCustomEvent("openJobDetails", {id: job.id, job: job.title});
     this._dialog.open(JobApplicationDialogComponent, {
       data: {
         job: job

@@ -29,6 +29,7 @@ import { CreateYourOwnJobDialogComponent } from './components/dialogs/create-you
 import { JobApplicationDialogComponent } from './components/dialogs/job-application-dialog/job-application-dialog.component';
 import { JobDetailsDialogComponent } from './components/dialogs/job-details-dialog/job-details-dialog.component';
 import { FirebaseService } from './services/firebase.service';
+import { FacebookService } from './services/facebook.service';
 
 const DIALOGS = [
   TellUsDialogComponent,
@@ -45,6 +46,7 @@ const COMPONENTS = [
 const SERVICES = [
   SectionService,
   FirebaseService,
+  FacebookService,
   {
     provide: RECAPTCHA_SETTINGS,
     useValue: {siteKey: '6LdcFU0UAAAAAJO-X2OKoqeuiLDRJ8TouPBsdFln'} as RecaptchaSettings,
