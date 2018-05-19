@@ -1,9 +1,13 @@
-import {Directive, EventEmitter, HostBinding, HostListener, Input, Output, TemplateRef, ViewContainerRef} from '@angular/core';
+import { Directive, EventEmitter, HostBinding, HostListener, Input, Output, TemplateRef, ViewContainerRef } from '@angular/core';
 
 @Directive({
   selector: '[cdkDetailRow]'
 })
 export class CdkDetailRowDirective {
+
+  @Output()
+  toggleChange = new EventEmitter<CdkDetailRowDirective>();
+
   private row: any;
   private tRef: TemplateRef<any>;
   private opened: boolean;
@@ -28,7 +32,7 @@ export class CdkDetailRowDirective {
     }
   }
 
-  @Output() toggleChange = new EventEmitter<CdkDetailRowDirective>();
+
 
   constructor(public vcRef: ViewContainerRef) { }
 

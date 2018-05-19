@@ -10,15 +10,15 @@ import { CdkDetailRowDirective } from '../../../../shared/directives/cdk-detail-
   styleUrls: ['./jobs-list.component.scss']
 })
 export class JobsListComponent implements AfterViewInit {
-
   displayedColumns = ['title', 'location', 'date'];
-
   dataSource: MatTableDataSource<AfsJob> = new MatTableDataSource<AfsJob>([]);
   selection = new SelectionModel<AfsJob>();
-  private openedRow: CdkDetailRowDirective
+  @ViewChild(MatPaginator)
+  paginator: MatPaginator;
+  @ViewChild(MatSort)
+  sort: MatSort;
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
+  private openedRow: CdkDetailRowDirective;
 
   @Input()
   set careersData(jobsSectionData: AfsJobsSection) {
@@ -38,7 +38,7 @@ export class JobsListComponent implements AfterViewInit {
     this.dataSource.sort = this.sort;
   }
 
-  onToggleChange(cdkDetailRow: CdkDetailRowDirective) : void {
+  onToggleChange(cdkDetailRow: CdkDetailRowDirective) {
     this.openedRow = cdkDetailRow.expanded ? cdkDetailRow : undefined;
   }
 }

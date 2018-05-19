@@ -75,17 +75,17 @@ export class AppComponent extends Unsubscribable implements OnInit {
   }
 
   openTellUs() {
-    this._facebookService.sendCustomEvent("openTellUs", {});
+    this._facebookService.sendCustomEvent('openTellUs');
     this._dialog.open(TellUsDialogComponent);
   }
 
   openCreateYourOwnJob() {
-    this._facebookService.sendCustomEvent("openCreateYourOwnJob", {});
+    this._facebookService.sendCustomEvent('openCreateYourOwnJob');
     this._dialog.open(CreateYourOwnJobDialogComponent);
   }
 
   openJobDetails(job: AfsJob) {
-    this._facebookService.sendCustomEvent("openJobDetails", {id: job.id, job: job.title});
+    this._facebookService.sendCustomEvent('openJobDetails', {id: job.id, job: job.title});
     this._dialog.open(JobApplicationDialogComponent, {
       data: {
         job: job
